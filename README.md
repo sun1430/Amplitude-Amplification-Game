@@ -56,7 +56,7 @@ Players may cooperate to amplify outcomes, or indirectly suppress each other thr
 
 ---
 
-## 🧩 Multi-Agent Amplitude Amplification Game  
+## Multi-Agent Amplitude Amplification Game  
 ### A Minimal Model | 简化建模
 
 我们给出一个最基础但可扩展的形式化定义。
@@ -67,15 +67,16 @@ We present a minimal yet extensible formalization below.
 
 ### 1. 初始状态 | Initial State
 
-\[
+
+```math
 |\psi_0\rangle \in \mathbb{C}^{2^n}
-\]
+```
 
 目标基态：
 
-\[
+```math
 |x^*\rangle
-\]
+```
 
 表示某玩家希望最大化的测量结果。
 
@@ -85,15 +86,15 @@ We present a minimal yet extensible formalization below.
 
 共有 \(k\) 个玩家，每个玩家选择：
 
-\[
+```math
 U_i \in \mathcal{U}(2^n)
-\]
+```
 
 系统演化为：
 
-\[
+```math
 |\psi_f\rangle = U_k U_{k-1} \cdots U_1 |\psi_0\rangle
-\]
+```
 
 由于量子操作一般**不交换（non-commutative）**，顺序直接影响结果。
 
@@ -101,15 +102,15 @@ U_i \in \mathcal{U}(2^n)
 
 ### 3. 收益函数 | Utility Function
 
-\[
+```math
 u_i = \left|\langle x^* \mid \psi_f\rangle\right|^2
-\]
+```
 
 扩展形式：
 
-\[
+```math
 u_i = f_i\!\left(\left|\langle x_i^* \mid \psi_f\rangle\right|^2\right)
-\]
+```
 
 ---
 
