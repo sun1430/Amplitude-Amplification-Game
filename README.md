@@ -14,7 +14,7 @@ This is a game of **interference**, **phase**, and **strategy*. Also a process o
 问题来了：  
 **在多人共同干预的情况下，如何让“你希望发生的那一种可能性”最终成为现实？**
 
-这是一个关于**干涉（interference）**、**相位（phase）**与**策略（strategy）**的游戏。也是对现实坍缩之前“可能性结构”的操控。
+这是一个关于**干涉（interference）**、**相位（phase）** 与 **策略（strategy）** 的游戏。也是对现实坍缩之前“可能性结构”的操控。
 
 ---
 
