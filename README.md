@@ -7,7 +7,7 @@
 Imagine a cat whose fate depends on a quantum system in superposition. Multiple agents can apply operations to the qubits, yet upon measurement, reality collapses into a single outcome.
 The question is:  
 **Given multiple agents manipulating the same quantum state, how can you steer the system so that your desired outcome becomes reality?**
-This is a game of **interference**, **phase**, and **strategy*. Also a process of shaping the structure of possibilities before reality collapses.
+This is a game of **interference**, **phase**, and **strategy**. Also a process of shaping the structure of possibilities before reality collapses.
 ### 中文
 想象一只猫的生死取决于一组处于叠加态的量子比特。你与其他参与者都可以对这些量子位施加操作，但当测量发生时，现实只会坍缩为唯一结果。
 
