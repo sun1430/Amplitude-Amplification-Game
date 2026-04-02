@@ -1,0 +1,47 @@
+experiment:
+  name: dynamics_reportable
+  output_root: results/full/dynamics_reportable
+  seed: 109
+  sampling_draws: 1024
+  methods:
+    - best_response
+    - projected_gradient
+    - extra_gradient
+model:
+  num_agents: 3
+  state_dim: 8
+  mixing_depth: 2
+  action_budget: 6.0
+  lambdas: 0.06
+  mixer_seed: 83
+  device: cpu
+target:
+  seed: 41
+  conflict_level: high
+dynamics:
+  num_initializations: 2
+  max_steps: 120
+  step_size: 0.02
+  br_inner_steps: 8
+  br_restarts: 2
+  tolerance: 0.1
+  stable_window: 4
+  cycle_window: 30
+  cycle_tolerance: 0.12
+scenarios:
+  - name: high_conflict_exact_vs_approx
+  - name: shared_target_variant
+    target:
+      shared_target: true
+  - name: no_mixing_low_conflict
+    model:
+      mixing_depth: 0
+    target:
+      conflict_level: low
+  - name: deep_competitive_high_conflict
+    model:
+      mixing_depth: 3
+      use_competitive_extension: true
+      gammas: 0.12
+    target:
+      conflict_level: high

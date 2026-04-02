@@ -1,14 +1,14 @@
 # Preliminary Report / 初步报告
 
-Date / 日期: 2026-04-01
+Date / 日期: 2026-04-02
 
 ## Status / 当前判断
 
 中文：
-基于仓库中的实现、保存下来的 `full` 实验结果，以及在目标环境中的通过测试结果，本项目已经具备撰写一版初步报告的条件。当前最有说服力的证据来自 payoff distortion 和 equilibrium distortion；sanity checks 已完成且全部通过；dynamics 部分已经有初步数据，但暂时不足以支持关于 cycling 或 convergence 的强结论。因此，本报告将其定位为中期进展报告，而不是最终版结题报告。
+基于仓库中的实现、保存下来的 `full` 实验结果，以及在目标环境中的通过测试结果，本项目已经具备撰写一版初步报告的条件。当前最有说服力的证据来自 payoff distortion 和 equilibrium distortion；sanity checks 已完成且全部通过；在新跑完的 `dynamics_reportable` 配置下，dynamics 部分也已经出现了可报告的模型差异。因此，本报告仍然属于中期进展报告，但已经比上一版更完整。
 
 English:
-Based on the implemented code, the saved `full` experiment outputs, and passing tests in the intended environment, the project is ready for an initial written report. The strongest evidence currently comes from payoff distortion and equilibrium distortion. Sanity checks are complete and passed. The dynamics experiments already produce usable observations, but they do not yet support strong claims about cycling or convergence. Accordingly, this document should be treated as a mid-project preliminary report rather than a final report.
+Based on the implemented code, the saved `full` experiment outputs, and passing tests in the intended environment, the project is ready for an initial written report. The strongest evidence currently comes from payoff distortion and equilibrium distortion. Sanity checks are complete and passed. Under the newly completed `dynamics_reportable` configuration, the dynamics section now also shows reportable model differences. This document is still a mid-project preliminary report, but it is more complete than the previous version.
 
 ## 1. Project Goal / 项目目标
 
@@ -50,7 +50,7 @@ The project also has a basic level of reproducibility. Running tests inside the 
 - [results/full/sanity](results/full/sanity)
 - [results/full/payoff](results/full/payoff)
 - [results/full/equilibrium](results/full/equilibrium)
-- [results/full/dynamics](results/full/dynamics)
+- [results/full/dynamics_reportable](results/full/dynamics_reportable)
 - [results/full/ablation](results/full/ablation)
 
 English:
@@ -59,7 +59,7 @@ The repository already contains a complete `full` results directory that can be 
 - [results/full/sanity](results/full/sanity)
 - [results/full/payoff](results/full/payoff)
 - [results/full/equilibrium](results/full/equilibrium)
-- [results/full/dynamics](results/full/dynamics)
+- [results/full/dynamics_reportable](results/full/dynamics_reportable)
 - [results/full/ablation](results/full/ablation)
 
 ## 4. Preliminary Results / 初步结果
@@ -150,21 +150,21 @@ Relevant figure / 对应图表:
 ### 4.4 Dynamics / 动态行为
 
 中文：
-动态部分目前已经有结果，但不适合写成强结论。按照当前 `full` dynamics 配置，所有记录到的 convergence rate 和 cycle rate 都是 `0.0`。这意味着当前实验至少说明两件事：第一，proposal 中关于 cycling/oscillation 的假设还没有被当前配置验证出来；第二，当前 step size、tolerance、cycle detector 或运行步数可能还不足以把差异显式放大。
+更新后的 dynamics 结果已经比上一版更有信息量。按照新的 `results/full/dynamics_reportable` 配置，整体平均 convergence rate 约为 `0.917`，整体平均 cycle rate 约为 `0.067`。更重要的是，`projected_gradient` 与 `extra_gradient` 在当前场景中几乎全部收敛且没有检测到 cycle，主要差异集中在 `best_response` dynamics 上。
 
 English:
-The dynamics section already produces data, but it is not yet suitable for strong claims. Under the current `full` dynamics configuration, all recorded convergence rates and cycle rates are `0.0`. This means at least two things: first, the proposal's cycling and oscillation hypothesis has not yet been validated under the current setup; second, the current step sizes, tolerances, cycle detector, or horizon length may not be sufficient to expose the intended differences.
+The updated dynamics results are substantially more informative than the previous version. Under the new `results/full/dynamics_reportable` configuration, the overall average convergence rate is about `0.917` and the overall average cycle rate is about `0.067`. More importantly, `projected_gradient` and `extra_gradient` almost always converge with no detected cycles, and the main separation now appears under `best_response` dynamics.
 
 中文：
-尽管如此，轨迹仍然显示 exact 与近似模型在 utility 水平和轨迹方差上存在差异。例如在 `high_conflict_exact_vs_approx` 场景下，`best_response` 动态中 exact 的最终平均 utility 约为 `0.164`，而 `aggregate` 为 `0.225`、`mean_field` 为 `0.112`、`no_mixing` 为 `0.056`。这说明动态更新下的行为结果并不一致，只是目前还无法据此稳健宣称“exact 更容易 cycling”或“approx 更容易收敛”。
+这组结果给出了一个比原 proposal 更细的图景。按所有 scenario 汇总，`best_response` 下 `exact`、`aggregate` 与 `mean_field` 的收敛率都是 `1.000`、cycle rate 都是 `0.000`；而 `no_mixing` 的收敛率只有 `0.500`、cycle rate 为 `0.375`，`sampling` 的收敛率只有 `0.250`、cycle rate 为 `0.625`。在 `high_conflict_exact_vs_approx` 中，`exact` best-response 收敛率为 `1.000`，而 `no_mixing` 的 cycle rate 为 `1.000`，`sampling` 为 `0.500`。因此，当前动态证据支持“近似会改变动态行为”，但并不支持最初版本里“exact 更容易 cycling”的强假设。
 
 English:
-That said, the trajectories still show differences in utility level and trajectory variance between the exact and approximate models. For example, in the `high_conflict_exact_vs_approx` scenario under `best_response` dynamics, the final mean utility is about `0.164` for the exact model, compared with `0.225` for `aggregate`, `0.112` for `mean_field`, and `0.056` for `no_mixing`. This suggests that dynamic behavior is not identical across models, but the current evidence is still insufficient to claim robustly that the exact game cycles more often or that approximate games converge more readily.
+These results provide a more nuanced picture than the original proposal. Aggregated across all scenarios, under `best_response` dynamics the `exact`, `aggregate`, and `mean_field` models all have convergence rate `1.000` and cycle rate `0.000`, while `no_mixing` converges only `0.500` of the time with cycle rate `0.375`, and `sampling` converges only `0.250` of the time with cycle rate `0.625`. In `high_conflict_exact_vs_approx`, the `exact` best-response dynamics converges with rate `1.000`, whereas the `no_mixing` cycle rate is `1.000` and the `sampling` cycle rate is `0.500`. Therefore, the current dynamics evidence supports the claim that approximations can change dynamic behavior, but it does not support the stronger original hypothesis that the exact model is systematically more prone to cycling.
 
 Relevant figure / 对应图表:
 
-- [results/full/dynamics/dynamics_summary.png](results/full/dynamics/dynamics_summary.png)
-- [results/full/dynamics/summary.csv](results/full/dynamics/summary.csv)
+- [results/full/dynamics_reportable/dynamics_summary.png](results/full/dynamics_reportable/dynamics_summary.png)
+- [results/full/dynamics_reportable/summary.csv](results/full/dynamics_reportable/summary.csv)
 
 ### 4.5 Ablation / 消融实验
 
@@ -194,7 +194,7 @@ Relevant figure / 对应图表:
 2. 均衡失真比单纯 payoff error 更能支持 proposal 的核心论点。多个场景中，近似模型会丢失 exact equilibria，或者引入在 exact game 中 regret 很高的伪均衡。
 3. `mean_field` 在无 mixing 或较弱结构耦合时较为可靠，但在更复杂 setting 下并不总能保持战略结构。
 4. 当前实现中的 `sampling` baseline 表现过强，暂时不适合直接作为“measurement-level approximation 失败”的证据。
-5. dynamics 部分已有初步差异，但尚不能支撑有关 cycling、oscillation 或 convergence advantage 的强论断。
+5. 更新后的 dynamics 结果已经能区分不同模型：gradient-based methods 基本收敛，而 best-response 下的 instability 主要出现在 `no_mixing` 和 `sampling`。但这组结果并不支持原始的“exact 更容易 cycling”假设。
 
 English:
 Based on the current results, the project can already support the following preliminary conclusions:
@@ -203,7 +203,7 @@ Based on the current results, the project can already support the following prel
 2. Equilibrium distortion is more convincing than payoff error alone for the proposal's central claim. In several scenarios, approximate models either miss exact equilibria or introduce false equilibria with high regret in the exact game.
 3. `mean_field` is reliable in no-mixing or weakly coupled settings, but it does not preserve strategic structure universally once the interaction becomes richer.
 4. The current `sampling` baseline is unusually strong and should not yet be used as direct evidence that measurement-level approximations fail.
-5. The dynamics section already shows differences, but it still does not support strong claims about cycling, oscillation, or convergence advantages.
+5. The updated dynamics section now clearly separates models: gradient-based methods mostly converge, while best-response instability is concentrated in `no_mixing` and `sampling`. However, these results do not support the original stronger hypothesis that the exact model is more prone to cycling.
 
 ## 6. Limitations / 当前局限
 
@@ -211,7 +211,7 @@ Based on the current results, the project can already support the following prel
 本报告必须明确以下局限，否则会过度陈述：
 
 1. `sampling` baseline 的定义目前使用了 exact state 的振幅信息来估计 target overlap，因此它比纯 measurement-only baseline 更强。
-2. dynamics 图表目前信息量偏低，既没有出现显式 cycle，也没有出现稳定收敛率差异。
+2. dynamics 结论目前具有明显的配置依赖性。当前可报告结果主要来自经过调参的 `dynamics_reportable` 配置，因此最终版仍需要更系统的 parameter sweep 来确认结论是否稳健。
 3. 当前绘图脚本更偏“实验调试图”，而不是最终论文图，尤其是 equilibrium 与 dynamics 图的标签布局还不够好。
 4. 有些趋势是明显的，但并非所有 baseline、所有维度、所有 agent 数下都严格单调，因此最终写作需要避免绝对化表述。
 
@@ -219,7 +219,7 @@ English:
 The following limitations should be stated explicitly to avoid overstating the results:
 
 1. The current `sampling` baseline uses amplitude information from the exact state to estimate target overlap, which makes it stronger than a purely measurement-only baseline.
-2. The current dynamics figures have limited evidential value: they show neither explicit cycles nor meaningful differences in convergence rates.
+2. The current dynamics conclusions are configuration-sensitive. The reportable signal mainly comes from the tuned `dynamics_reportable` setup, so the final version still needs a broader parameter sweep to establish robustness.
 3. The plotting scripts are closer to experiment-debugging plots than final-paper figures, especially for the equilibrium and dynamics visualizations.
 4. Some trends are clear, but they are not strictly monotonic across every baseline, dimension, and agent count, so the final writeup should avoid absolute claims.
 
@@ -229,7 +229,7 @@ The following limitations should be stated explicitly to avoid overstating the r
 若要把这份初步报告推进到最终版，优先级建议如下：
 
 1. 重新定义或弱化 `sampling` baseline，使其真正只依赖 outcome distribution，而不是 exact amplitudes。
-2. 调整 dynamics 实验设计，包括更长 horizon、更激进的 step size sweep、不同 cycle detector，以及更能诱发不稳定性的 scenario。
+2. 扩展 dynamics 实验设计，包括更系统的 step size sweep、不同 cycle detector，以及专门用来检验“exact 是否更不稳定”的对照场景。
 3. 重画 payoff、equilibrium 和 dynamics 图，使其更适合报告或答辩展示。
 4. 在最终报告中把核心叙事聚焦到“strategic preservation failure”，并把 dynamics 结论明确降级为 ongoing investigation，除非新实验能提供更强证据。
 
@@ -237,14 +237,14 @@ English:
 To turn this preliminary report into a final version, the recommended priorities are:
 
 1. Redefine or weaken the `sampling` baseline so that it truly depends only on the outcome distribution rather than exact amplitudes.
-2. Redesign the dynamics experiments, including longer horizons, stronger step-size sweeps, alternative cycle detectors, and scenarios more likely to induce instability.
+2. Expand the dynamics study with a more systematic step-size sweep, alternative cycle detectors, and scenarios designed specifically to test whether the exact model is actually less stable or more stable than its approximations.
 3. Rework the payoff, equilibrium, and dynamics figures so they are suitable for a report or presentation.
 4. Keep the final narrative centered on strategic preservation failure, and explicitly downgrade the dynamics claim to an ongoing investigation unless stronger evidence is produced.
 
 ## 8. Bottom Line / 总结
 
 中文：
-结论是：这个项目已经可以写一份可信的中期或初步报告。现阶段最扎实的主线是，mixing-enhanced exact game 与若干压缩近似之间确实存在 payoff distortion 与 equilibrium distortion，而且这种失真在若干 high-conflict 场景下相当明显。需要谨慎的是，dynamics 证据还弱，`sampling` baseline 的定义也还需要进一步校准。因此，当前最合适的写法是“初步支持 proposal 的核心命题，但仍需要补充动态实验与 baseline 修正来完成最终论证”。
+结论是：这个项目已经可以写一份可信的中期或初步报告。现阶段最扎实的主线是，mixing-enhanced exact game 与若干压缩近似之间确实存在 payoff distortion 与 equilibrium distortion，而且这种失真在若干 high-conflict 场景下相当明显。新跑完的 dynamics 结果进一步说明，不同近似确实会改变动态行为，但这种变化目前更像是“近似会改变稳定性模式”，而不是“exact 必然更容易 cycling”。因此，当前最合适的写法是“初步支持 proposal 的 preservation-failure 核心命题，但 dynamics 机制仍需要更系统地澄清”。
 
 English:
-The bottom line is that this project is already ready for a credible mid-project or preliminary report. The strongest current storyline is that the mixing-enhanced exact game does exhibit payoff distortion and equilibrium distortion relative to several compressed approximations, and that this distortion becomes substantial in a number of high-conflict settings. The main cautions are that the dynamics evidence is still weak and the `sampling` baseline still needs calibration. Therefore, the most defensible current framing is that the evidence provides preliminary support for the proposal's central claim, while further dynamics experiments and baseline refinement are still needed for a final argument.
+The bottom line is that this project is already ready for a credible mid-project or preliminary report. The strongest current storyline is that the mixing-enhanced exact game does exhibit payoff distortion and equilibrium distortion relative to several compressed approximations, and that this distortion becomes substantial in a number of high-conflict settings. The newly completed dynamics experiments further show that approximations do change dynamic behavior, but the current pattern is better described as a change in stability profile rather than evidence that the exact model is necessarily more prone to cycling. Therefore, the most defensible framing is that the evidence provides preliminary support for the proposal's preservation-failure claim, while the dynamics mechanism still needs a more systematic final study.

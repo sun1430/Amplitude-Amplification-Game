@@ -18,6 +18,7 @@ from reportlab.platypus import Image, PageBreak, Paragraph, SimpleDocTemplate, S
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results" / "full"
+DYNAMICS_RESULTS = RESULTS / "dynamics_reportable" if (RESULTS / "dynamics_reportable").exists() else RESULTS / "dynamics"
 OUT_DIR = ROOT / "output" / "pdf"
 OUT_PATH = OUT_DIR / "preliminary_report_bilingual.pdf"
 FONT_PATH = Path("C:/Windows/Fonts/msyh.ttc")
@@ -41,6 +42,14 @@ def find_row(rows: Iterable[dict[str, str]], scenario: str, baseline: str) -> di
         if row["scenario"] == scenario and row["baseline"] == baseline:
             return row
     raise KeyError(f"Missing row for scenario={scenario}, baseline={baseline}")
+
+
+def filter_rows(rows: Iterable[dict[str, str]], **conditions: str) -> list[dict[str, str]]:
+    result = []
+    for row in rows:
+        if all(row[key] == value for key, value in conditions.items()):
+            result.append(row)
+    return result
 
 
 def register_font() -> None:
@@ -165,7 +174,7 @@ def build_story() -> list:
 
     payoff_rows = read_csv(RESULTS / "payoff" / "summary.csv")
     equilibrium_rows = read_csv(RESULTS / "equilibrium" / "summary.csv")
-    dynamics_rows = read_csv(RESULTS / "dynamics" / "summary.csv")
+    dynamics_rows = read_csv(DYNAMICS_RESULTS / "summary.csv")
     ablation_rows = read_csv(RESULTS / "ablation" / "summary.csv")
 
     payoff_error = average_by_baseline(payoff_rows, "mean_abs_utility_error_mean")
@@ -174,6 +183,19 @@ def build_story() -> list:
 
     cycle_rate = statistics.mean(float(row["cycle_detected"]) for row in dynamics_rows)
     convergence_rate = statistics.mean(float(row["converged"]) for row in dynamics_rows)
+
+    br_rates: dict[str, tuple[float, float]] = {}
+    for model_name in ["exact", "aggregate", "mean_field", "no_mixing", "sampling"]:
+        model_rows = filter_rows(dynamics_rows, model_name=model_name, method="best_response")
+        br_rates[model_name] = (
+            statistics.mean(float(row["converged"]) for row in model_rows),
+            statistics.mean(float(row["cycle_detected"]) for row in model_rows),
+        )
+
+    high_exact_br = filter_rows(dynamics_rows, scenario="high_conflict_exact_vs_approx", model_name="exact", method="best_response")
+    high_nomix_br = filter_rows(dynamics_rows, scenario="high_conflict_exact_vs_approx", model_name="no_mixing", method="best_response")
+    high_sampling_br = filter_rows(dynamics_rows, scenario="high_conflict_exact_vs_approx", model_name="sampling", method="best_response")
+    shared_sampling_br = filter_rows(dynamics_rows, scenario="shared_target_variant", model_name="sampling", method="best_response")
 
     rep_l1_agg = find_row(payoff_rows, "N2_n4_L1_medium_B6", "aggregate")
     rep_l2_agg = find_row(payoff_rows, "N2_n4_L2_high_B10", "aggregate")
@@ -202,8 +224,8 @@ def build_story() -> list:
     )
     story.extend(
         cn_en(
-            "本报告基于当前仓库实现与 results/full 中保存的实验结果整理而成，目标是形成一份可以直接发送的、带插图的初步报告。当前最有说服力的证据来自 payoff distortion 与 equilibrium distortion；sanity checks 已完成；dynamics 部分已有数据，但还不足以支持强结论。",
-            "This report is compiled from the current repository implementation and the saved results/full artifacts. It is intended as a directly shareable preliminary report with embedded figures. The strongest evidence currently comes from payoff distortion and equilibrium distortion. Sanity checks are complete. The dynamics section already has data, but not enough for strong claims.",
+            "本报告基于当前仓库实现与 results/full 中保存的实验结果整理而成，目标是形成一份可以直接发送的、带插图的初步报告。当前最有说服力的证据来自 payoff distortion 与 equilibrium distortion；sanity checks 已完成；在新跑完的 reportable dynamics 配置下，动态部分也已经出现了可报告的模型差异。",
+            "This report is compiled from the current repository implementation and the saved results/full artifacts. It is intended as a directly shareable preliminary report with embedded figures. The strongest evidence currently comes from payoff distortion and equilibrium distortion. Sanity checks are complete, and the newly completed reportable dynamics configuration now also shows reportable model differences.",
             styles["body"],
         )
     )
@@ -292,8 +314,28 @@ def build_story() -> list:
     story.append(p("5. Dynamics and Ablation / 动态行为与消融分析", styles["h1"]))
     story.extend(
         cn_en(
-            f"当前 dynamics 结果最大的特点是保守：记录到的平均 convergence rate 为 {convergence_rate:.3f}，平均 cycle rate 为 {cycle_rate:.3f}。这说明现有配置尚未把 proposal 中设想的 cycling 或 convergence 差异明确激发出来。更合适的表述是，当前已经观察到不同模型在 utility 水平和 trajectory variance 上存在差异，但还不能据此给出关于稳定性机制的强结论。",
-            f"The most important feature of the current dynamics results is their conservatism: the average recorded convergence rate is {convergence_rate:.3f}, and the average cycle rate is {cycle_rate:.3f}. This means that the current setup has not yet exposed the cycling or convergence differences anticipated in the proposal. The defensible statement at this stage is that different models already show different utility levels and trajectory variances, but not yet enough evidence for strong claims about stability mechanisms.",
+            f"新跑完的 reportable dynamics 配置明显比旧版更有信息量：整体平均 convergence rate 为 {convergence_rate:.3f}，整体平均 cycle rate 为 {cycle_rate:.3f}。更具体地说，projected gradient 与 extra-gradient 在当前场景中基本全部收敛且没有检测到 cycle；主要差异集中在 best-response dynamics 上。",
+            f"The newly completed reportable dynamics configuration is substantially more informative than the previous one: the overall average convergence rate is {convergence_rate:.3f}, and the overall average cycle rate is {cycle_rate:.3f}. More specifically, projected-gradient and extra-gradient runs converge almost everywhere under the current scenarios with no detected cycles; the main separation appears under best-response dynamics.",
+            styles["body"],
+        )
+    )
+    dynamic_table = make_table(
+        [
+            ["Model", "BR convergence rate", "BR cycle rate"],
+            ["exact", f"{br_rates['exact'][0]:.3f}", f"{br_rates['exact'][1]:.3f}"],
+            ["aggregate", f"{br_rates['aggregate'][0]:.3f}", f"{br_rates['aggregate'][1]:.3f}"],
+            ["mean_field", f"{br_rates['mean_field'][0]:.3f}", f"{br_rates['mean_field'][1]:.3f}"],
+            ["no_mixing", f"{br_rates['no_mixing'][0]:.3f}", f"{br_rates['no_mixing'][1]:.3f}"],
+            ["sampling", f"{br_rates['sampling'][0]:.3f}", f"{br_rates['sampling'][1]:.3f}"],
+        ],
+        [1.5 * inch, 1.6 * inch, 1.35 * inch],
+    )
+    story.append(dynamic_table)
+    story.append(Spacer(1, 0.12 * inch))
+    story.extend(
+        cn_en(
+            f"这组结果给出了一个比原 proposal 更细的图景。在 `high_conflict_exact_vs_approx` 场景下，exact best-response 的收敛率为 {statistics.mean(float(row['converged']) for row in high_exact_br):.3f}、cycle rate 为 {statistics.mean(float(row['cycle_detected']) for row in high_exact_br):.3f}；而 no-mixing 的 cycle rate 为 {statistics.mean(float(row['cycle_detected']) for row in high_nomix_br):.3f}，sampling 为 {statistics.mean(float(row['cycle_detected']) for row in high_sampling_br):.3f}。在 `shared_target_variant` 中，sampling 的 best-response cycle rate 仍达到 {statistics.mean(float(row['cycle_detected']) for row in shared_sampling_br):.3f}。因此，当前动态证据支持“不同近似会改变动态行为”，但并不支持最初版本里“exact 更容易 cycling”的强假设。",
+            f"These results provide a more nuanced picture than the original proposal. In the `high_conflict_exact_vs_approx` scenario, the exact best-response dynamics has convergence rate {statistics.mean(float(row['converged']) for row in high_exact_br):.3f} and cycle rate {statistics.mean(float(row['cycle_detected']) for row in high_exact_br):.3f}; by contrast, the no-mixing cycle rate is {statistics.mean(float(row['cycle_detected']) for row in high_nomix_br):.3f}, and the sampling cycle rate is {statistics.mean(float(row['cycle_detected']) for row in high_sampling_br):.3f}. In `shared_target_variant`, the sampling best-response cycle rate remains {statistics.mean(float(row['cycle_detected']) for row in shared_sampling_br):.3f}. Therefore, the current dynamics evidence supports the claim that approximations can change dynamic behavior, but it does not support the stronger original hypothesis that the exact model is systematically more prone to cycling.",
             styles["body"],
         )
     )
@@ -304,14 +346,14 @@ def build_story() -> list:
             styles["body"],
         )
     )
-    story.extend(fig(RESULTS / "dynamics" / "dynamics_summary.png", "Dynamics outcome rates and a representative trajectory.", "Dynamics outcome rates and a representative utility trajectory.", 6.6 * inch, 3.0 * inch, styles))
+    story.extend(fig(DYNAMICS_RESULTS / "dynamics_summary.png", "Dynamics outcome rates and a representative trajectory.", "Dynamics outcome rates and a representative utility trajectory.", 6.6 * inch, 3.0 * inch, styles))
     story.extend(fig(RESULTS / "ablation" / "ablation_summary.png", "Ablation summary for approximation error and exact dynamics cycle rate.", "Ablation summary for approximation error and exact dynamics cycle rate.", 6.6 * inch, 3.0 * inch, styles))
 
     story.append(p("6. Preliminary Conclusion / 初步结论", styles["h1"]))
     story.extend(
         cn_en(
-            "基于当前结果，本项目已经足以形成一份可信的初步报告。最扎实的结论是：在 mixing-enhanced exact game 中，aggregate、no-mixing 以及部分 mean-field 近似会明显扭曲 payoff ranking、best response 与 equilibrium structure；这种 distortion 在若干 high-conflict 场景下相当显著。需要谨慎的是，sampling baseline 目前定义得过强，而 dynamics 部分还不足以支撑关于 cycling 或 convergence 的强 claim。",
-            "Based on the current results, the project already supports a credible preliminary report. The strongest conclusion is that in the mixing-enhanced exact game, aggregate, no-mixing, and in some cases mean-field approximations visibly distort payoff ranking, best responses, and equilibrium structure; this distortion becomes substantial in several high-conflict settings. The main cautions are that the current sampling baseline is defined too strongly, and that the dynamics section still does not support strong claims about cycling or convergence.",
+            "基于当前结果，本项目已经足以形成一份可信的初步报告。最扎实的结论是：在 mixing-enhanced exact game 中，aggregate、no-mixing 以及部分 mean-field 近似会明显扭曲 payoff ranking、best response 与 equilibrium structure；这种 distortion 在若干 high-conflict 场景下相当显著。更新后的 dynamics 结果进一步表明，不同近似确实会改变动态行为，但其方向并不完全符合最初的 H3 假设。",
+            "Based on the current results, the project already supports a credible preliminary report. The strongest conclusion is that in the mixing-enhanced exact game, aggregate, no-mixing, and in some cases mean-field approximations visibly distort payoff ranking, best responses, and equilibrium structure; this distortion becomes substantial in several high-conflict settings. The updated dynamics results further show that approximations do change dynamic behavior, but the direction of the effect does not fully align with the original H3 hypothesis.",
             styles["body"],
         )
     )
