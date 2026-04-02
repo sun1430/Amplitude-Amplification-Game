@@ -1,0 +1,40 @@
+experiment:
+  name: payoff_distortion
+  output_root: results/quick/payoff
+  seed: 13
+  num_profiles: 10
+  sampling_draws: 256
+  best_response_candidates: 8
+model:
+  num_agents: 2
+  state_dim: 4
+  mixing_depth: 1
+  action_budget: 4.0
+  lambdas: 0.08
+  mixer_seed: 29
+target:
+  seed: 7
+  conflict_level: medium
+scenarios:
+  - name: no_mixing_low_conflict
+    model:
+      mixing_depth: 0
+    target:
+      conflict_level: low
+  - name: shallow_medium_conflict
+    model:
+      mixing_depth: 1
+    target:
+      conflict_level: medium
+  - name: deep_high_conflict
+    model:
+      mixing_depth: 3
+    target:
+      conflict_level: high
+  - name: deep_high_conflict_competitive
+    model:
+      mixing_depth: 3
+      use_competitive_extension: true
+      gammas: 0.12
+    target:
+      conflict_level: high

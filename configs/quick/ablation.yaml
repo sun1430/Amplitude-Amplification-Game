@@ -1,0 +1,44 @@
+experiment:
+  name: ablation
+  output_root: results/quick/ablation
+  seed: 23
+  num_profiles: 8
+  sampling_draws: 256
+model:
+  num_agents: 2
+  state_dim: 4
+  mixing_depth: 2
+  action_budget: 4.0
+  lambdas: 0.08
+  mixer_seed: 37
+target:
+  seed: 13
+  conflict_level: medium
+dynamics:
+  num_initializations: 2
+  max_steps: 16
+  step_size: 0.10
+  br_inner_steps: 8
+scenarios:
+  - name: A_no_mixing
+    model:
+      mixing_depth: 0
+  - name: B_with_mixing
+    model:
+      mixing_depth: 2
+  - name: C_shared_payoff
+    target:
+      shared_target: true
+    model:
+      use_competitive_extension: false
+      gammas: 0.0
+      lambdas: 0.08
+  - name: D_low_conflict
+    target:
+      conflict_level: low
+  - name: E_high_conflict_competitive
+    target:
+      conflict_level: high
+    model:
+      use_competitive_extension: true
+      gammas: 0.12

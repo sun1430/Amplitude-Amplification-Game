@@ -1,0 +1,13 @@
+scenario,num_agents,state_dim,mixing_depth,mean_action_budget,conflict_level,rho,shared_target,competitive_extension,mean_target_overlap,baseline,exact_pure_count,approx_pure_count,exact_epsilon_count,approx_epsilon_count,pure_overlap,epsilon_overlap,pure_jaccard,epsilon_jaccard,mean_exact_regret_of_approx_epsilon
+N2_n2_nomixing_shared,2,2,0,2.0,medium,0.5,True,False,0.9999999999999996,no_mixing,18.0,18.0,18.0,18.0,18.0,18.0,1.0,1.0,0.0
+N2_n2_nomixing_shared,2,2,0,2.0,medium,0.5,True,False,0.9999999999999996,aggregate,18.0,10.0,18.0,10.0,9.0,9.0,0.47368421052631576,0.47368421052631576,0.013155289392972497
+N2_n2_nomixing_shared,2,2,0,2.0,medium,0.5,True,False,0.9999999999999996,mean_field,18.0,18.0,18.0,18.0,18.0,18.0,1.0,1.0,0.0
+N2_n2_nomixing_shared,2,2,0,2.0,medium,0.5,True,False,0.9999999999999996,sampling,18.0,18.0,18.0,18.0,18.0,18.0,1.0,1.0,0.0
+N2_n4_mixing_high,2,4,2,4.0,medium,0.5,False,False,0.7246664902285359,no_mixing,1.0,2.0,1.0,3.0,0.0,0.0,0.0,0.0,0.3234252877087912
+N2_n4_mixing_high,2,4,2,4.0,medium,0.5,False,False,0.7246664902285359,aggregate,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.3041691132887685
+N2_n4_mixing_high,2,4,2,4.0,medium,0.5,False,False,0.7246664902285359,mean_field,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,0.26205771455444477
+N2_n4_mixing_high,2,4,2,4.0,medium,0.5,False,False,0.7246664902285359,sampling,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.0
+N3_n2_mixing_high,3,2,2,2.0,high,0.15,False,False,0.977432635374248,no_mixing,36.0,24.0,45.0,24.0,0.0,0.0,0.0,0.0,0.17046716855280328
+N3_n2_mixing_high,3,2,2,2.0,high,0.15,False,False,0.977432635374248,aggregate,36.0,1.0,45.0,1.0,0.0,0.0,0.0,0.0,0.31960767559601555
+N3_n2_mixing_high,3,2,2,2.0,high,0.15,False,False,0.977432635374248,mean_field,36.0,54.0,45.0,54.0,36.0,36.0,0.6666666666666666,0.5714285714285714,0.03277435603281567
+N3_n2_mixing_high,3,2,2,2.0,high,0.15,False,False,0.977432635374248,sampling,36.0,36.0,45.0,36.0,36.0,36.0,1.0,0.8,0.0

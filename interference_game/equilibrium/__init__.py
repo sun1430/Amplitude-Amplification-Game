@@ -1,0 +1,1 @@
+"""Discrete equilibrium search utilities."""

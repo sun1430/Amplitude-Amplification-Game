@@ -1,0 +1,9 @@
+scenario,num_agents,state_dim,mixing_depth,mean_action_budget,conflict_level,rho,shared_target,competitive_extension,mean_target_overlap,baseline,exact_pure_count,approx_pure_count,exact_epsilon_count,approx_epsilon_count,pure_overlap,epsilon_overlap,pure_jaccard,epsilon_jaccard,mean_exact_regret_of_approx_epsilon
+no_mixing_shared,2,2,0,2.0,medium,0.5,True,False,1.0,no_mixing,18.0,18.0,18.0,18.0,18.0,18.0,1.0,1.0,0.0
+no_mixing_shared,2,2,0,2.0,medium,0.5,True,False,1.0,aggregate,18.0,18.0,18.0,19.0,18.0,18.0,1.0,0.9473684210526315,0.01109053207212516
+no_mixing_shared,2,2,0,2.0,medium,0.5,True,False,1.0,mean_field,18.0,18.0,18.0,18.0,18.0,18.0,1.0,1.0,0.0
+no_mixing_shared,2,2,0,2.0,medium,0.5,True,False,1.0,sampling,18.0,18.0,18.0,18.0,18.0,18.0,1.0,1.0,0.0
+mixing_high_conflict,2,2,1,2.0,high,0.15,False,False,0.9515044051205417,no_mixing,6.0,4.0,6.0,4.0,3.0,3.0,0.42857142857142855,0.42857142857142855,0.2037206873165575
+mixing_high_conflict,2,2,1,2.0,high,0.15,False,False,0.9515044051205417,aggregate,6.0,3.0,6.0,3.0,0.0,0.0,0.0,0.0,0.8801301102051869
+mixing_high_conflict,2,2,1,2.0,high,0.15,False,False,0.9515044051205417,mean_field,6.0,12.0,6.0,12.0,0.0,0.0,0.0,0.0,0.2087267790096143
+mixing_high_conflict,2,2,1,2.0,high,0.15,False,False,0.9515044051205417,sampling,6.0,6.0,6.0,6.0,6.0,6.0,1.0,1.0,0.0

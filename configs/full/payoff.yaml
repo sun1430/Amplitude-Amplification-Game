@@ -1,0 +1,108 @@
+experiment:
+  name: payoff_distortion_full
+  output_root: results/full/payoff
+  seed: 103
+  num_profiles: 24
+  sampling_draws: 1024
+  best_response_candidates: 12
+model:
+  num_agents: 2
+  state_dim: 8
+  mixing_depth: 1
+  action_budget: 6.0
+  lambdas: 0.06
+  mixer_seed: 73
+target:
+  seed: 35
+  conflict_level: medium
+scenarios:
+  - name: N2_n4_L0_low_B2
+    model:
+      num_agents: 2
+      state_dim: 4
+      mixing_depth: 0
+      action_budget: 2.0
+    target:
+      conflict_level: low
+  - name: N2_n4_L1_medium_B6
+    model:
+      num_agents: 2
+      state_dim: 4
+      mixing_depth: 1
+      action_budget: 6.0
+    target:
+      conflict_level: medium
+  - name: N2_n4_L2_high_B10
+    model:
+      num_agents: 2
+      state_dim: 4
+      mixing_depth: 2
+      action_budget: 10.0
+    target:
+      conflict_level: high
+  - name: N2_n8_L3_high_B6
+    model:
+      num_agents: 2
+      state_dim: 8
+      mixing_depth: 3
+      action_budget: 6.0
+    target:
+      conflict_level: high
+  - name: N3_n4_L0_medium_B2
+    model:
+      num_agents: 3
+      state_dim: 4
+      mixing_depth: 0
+      action_budget: 2.0
+    target:
+      conflict_level: medium
+  - name: N3_n8_L1_low_B6
+    model:
+      num_agents: 3
+      state_dim: 8
+      mixing_depth: 1
+      action_budget: 6.0
+    target:
+      conflict_level: low
+  - name: N3_n8_L2_high_B10
+    model:
+      num_agents: 3
+      state_dim: 8
+      mixing_depth: 2
+      action_budget: 10.0
+    target:
+      conflict_level: high
+  - name: N3_n16_L3_high_B10_comp
+    model:
+      num_agents: 3
+      state_dim: 16
+      mixing_depth: 3
+      action_budget: 10.0
+      use_competitive_extension: true
+      gammas: 0.10
+    target:
+      conflict_level: high
+  - name: N5_n4_L1_medium_B2
+    model:
+      num_agents: 5
+      state_dim: 4
+      mixing_depth: 1
+      action_budget: 2.0
+    target:
+      conflict_level: medium
+  - name: N5_n8_L2_high_B6
+    model:
+      num_agents: 5
+      state_dim: 8
+      mixing_depth: 2
+      action_budget: 6.0
+    target:
+      conflict_level: high
+  - name: N5_n16_L3_high_B10
+    model:
+      num_agents: 5
+      state_dim: 16
+      mixing_depth: 3
+      action_budget: 10.0
+    target:
+      conflict_level: high

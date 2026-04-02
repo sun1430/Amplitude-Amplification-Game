@@ -1,0 +1,6 @@
+check,passed
+normalization_close_to_one,True
+cost_term_monotonic,True
+no_mixing_matches_l0,True
+shared_target_equal_fidelity,True
+larger_action_changes_utility,True

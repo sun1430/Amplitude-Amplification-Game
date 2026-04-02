@@ -1,0 +1,17 @@
+name: ece752-route2
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - numpy<2
+  - scipy
+  - pandas
+  - matplotlib
+  - pyyaml
+  - pytest
+  - pytorch
+  - pytorch-cuda=12.4
+  - pytorch-mutex=1.0=cuda

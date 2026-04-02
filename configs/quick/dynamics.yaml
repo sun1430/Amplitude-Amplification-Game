@@ -1,0 +1,28 @@
+experiment:
+  name: dynamics
+  output_root: results/quick/dynamics
+  seed: 19
+  sampling_draws: 256
+  methods:
+    - best_response
+    - projected_gradient
+    - extra_gradient
+model:
+  num_agents: 2
+  state_dim: 4
+  mixing_depth: 2
+  action_budget: 4.0
+  lambdas: 0.08
+  mixer_seed: 31
+target:
+  seed: 11
+  conflict_level: high
+dynamics:
+  num_initializations: 2
+  max_steps: 18
+  step_size: 0.10
+  br_inner_steps: 10
+  br_restarts: 2
+  tolerance: 0.0005
+scenarios:
+  - name: mixing_high_conflict

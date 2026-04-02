@@ -1,0 +1,26 @@
+experiment:
+  name: sanity
+  output_root: results/quick/sanity
+  seed: 11
+  perturbation_delta: 0.45
+  perturbation_points: 21
+model:
+  num_agents: 2
+  state_dim: 4
+  mixing_depth: 2
+  action_budget: 4.0
+  lambdas: 0.08
+  gammas: 0.10
+  mixer_seed: 17
+  use_competitive_extension: true
+target:
+  seed: 5
+  conflict_level: medium
+equilibrium:
+  epsilon: 0.001
+  max_profiles: 256
+dynamics:
+  num_initializations: 2
+  max_steps: 20
+  step_size: 0.12
+  br_inner_steps: 10

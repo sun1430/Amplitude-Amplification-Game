@@ -1,0 +1,29 @@
+experiment:
+  name: equilibrium_distortion
+  output_root: results/quick/equilibrium
+  seed: 17
+  sampling_draws: 256
+model:
+  num_agents: 2
+  state_dim: 2
+  mixing_depth: 1
+  action_budget: 2.0
+  lambdas: 0.05
+  mixer_seed: 23
+target:
+  seed: 9
+  conflict_level: medium
+equilibrium:
+  epsilon: 0.001
+  max_profiles: 256
+scenarios:
+  - name: no_mixing_shared
+    model:
+      mixing_depth: 0
+    target:
+      shared_target: true
+  - name: mixing_high_conflict
+    model:
+      mixing_depth: 1
+    target:
+      conflict_level: high

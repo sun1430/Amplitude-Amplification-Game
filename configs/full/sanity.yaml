@@ -1,0 +1,23 @@
+experiment:
+  name: sanity_full
+  output_root: results/full/sanity
+  seed: 101
+  perturbation_delta: 0.6
+  perturbation_points: 31
+model:
+  num_agents: 3
+  state_dim: 8
+  mixing_depth: 3
+  action_budget: 6.0
+  lambdas: 0.06
+  gammas: 0.10
+  mixer_seed: 71
+  use_competitive_extension: true
+target:
+  seed: 33
+  conflict_level: high
+dynamics:
+  num_initializations: 3
+  max_steps: 30
+  step_size: 0.08
+  br_inner_steps: 18

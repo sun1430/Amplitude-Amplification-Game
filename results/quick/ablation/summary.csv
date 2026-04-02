@@ -1,0 +1,6 @@
+scenario,num_agents,state_dim,mixing_depth,mean_action_budget,conflict_level,rho,shared_target,competitive_extension,mean_target_overlap,aggregate_error,mean_field_error,sampling_error,cycle_rate,convergence_rate
+A_no_mixing,2,4,0,4.0,medium,0.5,False,False,0.7693032225559561,0.16412016776801977,4.5102810375396984e-17,0.04257433383375491,0.0,0.0
+B_with_mixing,2,4,2,4.0,medium,0.5,False,False,0.7693032225559561,0.2791135590237914,0.04126676928915969,0.02518944444387293,0.0,0.0
+C_shared_payoff,2,4,2,4.0,medium,0.5,True,False,1.0,0.6482320064801228,0.06681063131660951,0.011429276207750416,0.0,0.0
+D_low_conflict,2,4,2,4.0,low,0.85,False,False,0.9153632356254631,0.5579082708525913,0.0706080051865609,0.01097025396214523,0.0,0.0
+E_high_conflict_competitive,2,4,2,4.0,high,0.15,False,True,0.6952392881459603,0.30529508420010504,0.06427403607006717,0.014395347667990104,0.0,0.0

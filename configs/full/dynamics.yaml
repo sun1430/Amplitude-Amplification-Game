@@ -1,0 +1,47 @@
+experiment:
+  name: dynamics_full
+  output_root: results/full/dynamics
+  seed: 109
+  sampling_draws: 1024
+  methods:
+    - best_response
+    - projected_gradient
+    - extra_gradient
+model:
+  num_agents: 3
+  state_dim: 8
+  mixing_depth: 2
+  action_budget: 6.0
+  lambdas: 0.06
+  mixer_seed: 83
+  device: cpu
+target:
+  seed: 41
+  conflict_level: high
+dynamics:
+  num_initializations: 3
+  max_steps: 90
+  step_size: 0.16
+  br_inner_steps: 20
+  br_restarts: 4
+  tolerance: 0.03
+  stable_window: 3
+  cycle_window: 40
+  cycle_tolerance: 0.06
+scenarios:
+  - name: high_conflict_exact_vs_approx
+  - name: shared_target_variant
+    target:
+      shared_target: true
+  - name: no_mixing_low_conflict
+    model:
+      mixing_depth: 0
+    target:
+      conflict_level: low
+  - name: deep_competitive_high_conflict
+    model:
+      mixing_depth: 3
+      use_competitive_extension: true
+      gammas: 0.12
+    target:
+      conflict_level: high
