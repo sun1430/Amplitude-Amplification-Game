@@ -1,0 +1,10 @@
+scenario,model_name,mean_regret
+deep_high_conflict,ground_truth,0.0
+deep_high_conflict,quantum_encoded,0.0
+deep_high_conflict,residual_mlp,0.022373750924922015
+medium_conflict,ground_truth,0.0
+medium_conflict,quantum_encoded,0.0
+medium_conflict,residual_mlp,0.00980303294037315
+shallow_low_conflict,ground_truth,0.0
+shallow_low_conflict,quantum_encoded,0.0
+shallow_low_conflict,residual_mlp,0.0019657582486282007

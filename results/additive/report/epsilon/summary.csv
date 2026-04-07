@@ -1,0 +1,10 @@
+scenario,model_name,mean_epsilon
+deep_high_conflict,ground_truth,0.02441120784461209
+deep_high_conflict,quantum_encoded,0.02441120784461209
+deep_high_conflict,residual_mlp,0.09183979334876188
+medium_conflict,ground_truth,0.006305450056326653
+medium_conflict,quantum_encoded,0.006305450056326653
+medium_conflict,residual_mlp,0.02710622813120657
+shallow_low_conflict,ground_truth,0.02633157163421252
+shallow_low_conflict,quantum_encoded,0.02633157163421252
+shallow_low_conflict,residual_mlp,0.03607683417311014

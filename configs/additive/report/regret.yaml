@@ -1,0 +1,46 @@
+experiment:
+  name: regret_analysis_report
+  output_root: results/additive/report/regret
+  seed: 103
+  num_profiles: 32
+  best_response_candidates: 12
+  train_samples: 256
+  val_samples: 64
+  batch_size: 32
+  epochs: 50
+  learning_rate: 0.005
+  weight_decay: 0.0001
+  early_stopping_patience: 8
+  hidden_dim: 64
+  max_regret_candidates: 12
+model:
+  num_agents: 2
+  state_dim: 4
+  mixing_depth: 2
+  action_budget: 4.0
+  lambdas: 0.06
+  mixer_seed: 41
+  device: cuda
+target:
+  seed: 19
+  conflict_level: medium
+equilibrium:
+  discrete_phases: [0.0, 1.5707963267948966]
+  epsilon: 0.1
+  max_profiles: 512
+scenarios:
+  - name: shallow_low_conflict
+    model:
+      mixing_depth: 1
+    target:
+      conflict_level: low
+  - name: medium_conflict
+    model:
+      mixing_depth: 2
+    target:
+      conflict_level: medium
+  - name: deep_high_conflict
+    model:
+      mixing_depth: 3
+    target:
+      conflict_level: high
