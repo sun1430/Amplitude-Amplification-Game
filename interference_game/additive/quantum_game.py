@@ -3,15 +3,17 @@ from __future__ import annotations
 import numpy as np
 import torch
 
+from interference_game.additive.config import AdditiveExperimentConfig
 from interference_game.additive.activations import entmax15
 from interference_game.additive.classical_game import ClassicalGroundTruthGame
 from interference_game.additive.scoring import DistributionEvaluationResult, DistributionScoringMixin
 
 
 class QuantumEncodedGame(DistributionScoringMixin):
-    def __init__(self, reference_game: ClassicalGroundTruthGame):
+    def __init__(self, reference_game: ClassicalGroundTruthGame, experiment_config: AdditiveExperimentConfig):
         super().__init__(reference_game.config, reference_game.targets)
         self.reference_game = reference_game
+        self.experiment_config = experiment_config
         self.initial_distribution = reference_game.initial_distribution
         self.initial_state = torch.sqrt(self.initial_distribution).to(dtype=self.complex_dtype)
         self.transition_matrix = reference_game.transition_matrix
@@ -60,7 +62,25 @@ class QuantumEncodedGame(DistributionScoringMixin):
         counts = torch.bincount(draws, minlength=self.config.state_dim).to(dtype=self.real_dtype, device=self.device)
         return counts / float(num_draws)
 
+    def estimate_observable_expectations(self, distribution: torch.Tensor, num_qubits: int | None = None) -> torch.Tensor:
+        exact = self.observables @ distribution.to(self.device, dtype=self.real_dtype)
+        resolved_qubits = self.experiment_config.amplitude_estimation_qubits if num_qubits is None else num_qubits
+        num_qubits = max(int(resolved_qubits), 1)
+        grid = 2**num_qubits
+        amplitudes = torch.sqrt(torch.clamp(exact, min=0.0, max=1.0))
+        angles = torch.arcsin(torch.clamp(amplitudes, min=0.0, max=1.0))
+        grid_index = torch.round(grid * angles / np.pi)
+        grid_index = torch.clamp(grid_index, min=0, max=grid // 2)
+        estimated = torch.sin(np.pi * grid_index / grid).square()
+        return torch.clamp(estimated, min=0.0, max=1.0)
+
     def evaluate(self, actions: torch.Tensor | np.ndarray | list[list[float]]) -> DistributionEvaluationResult:
         projected = self.project_actions(actions)
         distribution, psi = self._simulate_state(projected)
-        return self._score_distribution(distribution, projected, latent_state=psi)
+        expectations = self.estimate_observable_expectations(distribution)
+        return self._score_distribution(
+            distribution,
+            projected,
+            latent_state=psi,
+            observable_expectations=expectations,
+        )

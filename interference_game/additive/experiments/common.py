@@ -64,7 +64,7 @@ def load_cases(config_path: str | Path) -> list[AdditiveExperimentCase]:
         scenario_name = scenario.get("name", experiment_config.name)
         target_bundle = generate_distribution_targets(target_config, model_config.num_agents, model_config.state_dim)
         ground_truth = ClassicalGroundTruthGame(model_config, target_bundle.targets)
-        quantum = QuantumEncodedGame(ground_truth)
+        quantum = QuantumEncodedGame(ground_truth, experiment_config)
         surrogate = ResidualMLPSurrogate(ground_truth, experiment_config)
         artifact_dir = output_dir(experiment_config.output_root, scenario_name) / "_artifacts" / "residual_mlp"
         surrogate.fit(artifact_dir, seed=experiment_config.seed + idx)

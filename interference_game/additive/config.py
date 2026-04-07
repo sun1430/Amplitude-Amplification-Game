@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -23,6 +23,9 @@ class AdditiveExperimentConfig:
     early_stopping_patience: int = 6
     hidden_dim: int = 64
     max_regret_candidates: int = 8
+    amplitude_estimation_qubits: int = 8
+    estimation_budgets: list[int] = field(default_factory=lambda: [8, 16, 32, 64, 128, 256])
+    mc_repetitions: int = 1
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "AdditiveExperimentConfig":

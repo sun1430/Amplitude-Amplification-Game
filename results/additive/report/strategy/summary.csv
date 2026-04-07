@@ -1,10 +1,10 @@
 scenario,model_name,accuracy
 deep_high_conflict,ground_truth,1.0
 deep_high_conflict,quantum_encoded,1.0
-deep_high_conflict,residual_mlp,0.765625
+deep_high_conflict,residual_mlp,0.859375
 medium_conflict,ground_truth,1.0
 medium_conflict,quantum_encoded,1.0
-medium_conflict,residual_mlp,0.765625
+medium_conflict,residual_mlp,0.90625
 shallow_low_conflict,ground_truth,1.0
-shallow_low_conflict,quantum_encoded,1.0
-shallow_low_conflict,residual_mlp,0.8125
+shallow_low_conflict,quantum_encoded,0.984375
+shallow_low_conflict,residual_mlp,0.953125

@@ -8,6 +8,7 @@ import torch
 
 from interference_game.additive.activations import entmax15
 from interference_game.additive.experiments.common import load_cases
+from interference_game.additive.experiments.run_observable_estimation_benchmark import run_from_config as run_observable_benchmark
 from interference_game.additive.experiments.run_epsilon_analysis import run_from_config as run_epsilon
 from interference_game.additive.experiments.run_regret_analysis import run_from_config as run_regret
 from interference_game.additive.experiments.run_strategy_comparison import run_from_config as run_strategy
@@ -43,7 +44,10 @@ def test_additive_models_return_valid_distributions_and_scores() -> None:
     quantum_distribution = quantum_distribution / quantum_distribution.sum()
     assert torch.allclose(quantum_result.influence_distribution, quantum_distribution, atol=1e-8)
     assert torch.allclose(quantum_result.influence_distribution, gt_result.influence_distribution, atol=1e-8)
-    assert torch.allclose(quantum_result.utilities, gt_result.utilities, atol=1e-8)
+    assert quantum_result.observable_expectations is not None
+    assert gt_result.observable_expectations is not None
+    assert torch.max(torch.abs(quantum_result.observable_expectations - gt_result.observable_expectations)).item() < 0.02
+    assert torch.max(torch.abs(quantum_result.utilities - gt_result.utilities)).item() < 0.02
     larger_action = actions * 1.5
     assert torch.all(case.ground_truth_game.evaluate(larger_action).costs >= gt_result.costs)
 
@@ -67,6 +71,7 @@ def test_additive_quick_experiments() -> None:
     strategy_dir = run_strategy(ROOT / "configs" / "additive" / "quick" / "strategy.yaml")
     regret_dir = run_regret(ROOT / "configs" / "additive" / "quick" / "regret.yaml")
     epsilon_dir = run_epsilon(ROOT / "configs" / "additive" / "quick" / "epsilon.yaml")
+    benchmark_dir = run_observable_benchmark(ROOT / "configs" / "additive" / "quick" / "observable_estimation.yaml")
 
     for result_dir, column in [
         (strategy_dir, "accuracy"),
@@ -77,3 +82,9 @@ def test_additive_quick_experiments() -> None:
         assert set(summary["model_name"]) == {"ground_truth", "quantum_encoded", "residual_mlp"}
         assert column in summary.columns
         assert (result_dir / "raw.csv").exists()
+
+    benchmark_summary = pd.read_csv(benchmark_dir / "summary.csv")
+    benchmark_aggregate = pd.read_csv(benchmark_dir / "aggregate.csv")
+    assert set(benchmark_summary["method"]) == {"amplitude_estimation", "monte_carlo"}
+    assert set(benchmark_aggregate["method"]) == {"amplitude_estimation", "monte_carlo"}
+    assert {"query_budget", "observable_error", "utility_error"}.issubset(benchmark_aggregate.columns)
