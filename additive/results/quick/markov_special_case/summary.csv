@@ -1,7 +1,7 @@
 scenario,model_name,accuracy,mean_regret,mean_epsilon,avg_entropy,avg_support_size
-markov_high_conflict,ground_truth,1.0,0.0,0.0,1.0973567357358212,3.0
-markov_high_conflict,quantum_encoded,1.0,0.0,0.0,1.0973567357358212,3.0
-markov_high_conflict,residual_mlp,0.9375,8.642048960966556e-05,0.0,1.0973567357358212,3.0
-markov_low_conflict,ground_truth,1.0,0.0,0.0,1.0973198324937703,3.0
-markov_low_conflict,quantum_encoded,1.0,0.0,0.0,1.0973198324937703,3.0
-markov_low_conflict,residual_mlp,1.0,0.0,0.0,1.0973198324937703,3.0
+markov_high_conflict,ground_truth,1.0,0.0,0.0,1.0974057759935025,3.0
+markov_high_conflict,quantum_encoded,1.0,0.0,0.0,1.0974057759935025,3.0
+markov_high_conflict,residual_mlp,1.0,0.0,0.0,1.0974057759935025,3.0
+markov_low_conflict,ground_truth,1.0,0.0,0.0,1.0974086409995842,3.0
+markov_low_conflict,quantum_encoded,1.0,0.0,0.0,1.0974086409995842,3.0
+markov_low_conflict,residual_mlp,1.0,0.0,0.0,1.0974086409995842,3.0

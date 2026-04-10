@@ -1,10 +1,10 @@
 scenario,model_name,mean_regret
 markov_high_conflict,ground_truth,0.0
 markov_high_conflict,quantum_encoded,0.0
-markov_high_conflict,residual_mlp,0.0021688159520709726
+markov_high_conflict,residual_mlp,0.002167735105933093
 markov_low_conflict,ground_truth,0.0
 markov_low_conflict,quantum_encoded,0.0
-markov_low_conflict,residual_mlp,0.0005657013652315869
+markov_low_conflict,residual_mlp,0.0005659324825854692
 markov_medium_conflict,ground_truth,0.0
 markov_medium_conflict,quantum_encoded,0.0
-markov_medium_conflict,residual_mlp,0.00446692059584905
+markov_medium_conflict,residual_mlp,0.004467409245566039

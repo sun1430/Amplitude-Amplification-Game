@@ -1,0 +1,13 @@
+horizon,method,query_budget,accuracy,mean_regret
+1,amplitude_estimation,8,1.0,0.0
+1,amplitude_estimation,32,1.0,0.0
+1,monte_carlo,8,0.1875,0.04808275131542822
+1,monte_carlo,32,0.375,0.0473052237427061
+3,amplitude_estimation,8,1.0,0.0
+3,amplitude_estimation,32,1.0,0.0
+3,monte_carlo,8,0.3125,0.037810419658175526
+3,monte_carlo,32,0.375,0.03321195608237378
+5,amplitude_estimation,8,1.0,0.0
+5,amplitude_estimation,32,1.0,0.0
+5,monte_carlo,8,0.25,0.03611942040191834
+5,monte_carlo,32,0.25,0.03231996070004073

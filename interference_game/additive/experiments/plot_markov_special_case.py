@@ -86,7 +86,40 @@ def plot_results(results_dir: str | Path) -> tuple[Path, Path]:
     observable_output = results_path / "markov_special_case_observable.png"
     figure2.savefig(observable_output, dpi=180, bbox_inches="tight")
     plt.close(figure2)
-    return metrics_output, observable_output
+
+    estimation_strategy = read_frame(results_path / "estimation_strategy_summary.csv")
+    estimation_aggregate = (
+        estimation_strategy.groupby(["method", "query_budget"], dropna=False)[["accuracy", "mean_regret"]]
+        .mean()
+        .reset_index()
+        .sort_values(["method", "query_budget"])
+        .reset_index(drop=True)
+    )
+    figure3, axes3 = plt.subplots(1, 2, figsize=(11.5, 4.2))
+    for axis, metric, title in [
+        (axes3[0], "accuracy", "Strategy Accuracy vs Query Budget"),
+        (axes3[1], "mean_regret", "Strategy Regret vs Query Budget"),
+    ]:
+        for method, group in estimation_aggregate.groupby("method"):
+            ordered = group.sort_values("query_budget")
+            axis.plot(
+                ordered["query_budget"],
+                ordered[metric],
+                marker="o",
+                linewidth=2.0,
+                color=METHOD_COLORS[method],
+                label=method.replace("_", " ").title(),
+            )
+        axis.set_xscale("log", base=2)
+        axis.set_xlabel("Query Budget")
+        axis.set_title(title)
+        axis.grid(alpha=0.25)
+    axes3[0].legend(frameon=False)
+    figure3.tight_layout()
+    estimation_output = results_path / "markov_special_case_estimation_strategy.png"
+    figure3.savefig(estimation_output, dpi=180, bbox_inches="tight")
+    plt.close(figure3)
+    return metrics_output, observable_output, estimation_output
 
 
 def main() -> None:

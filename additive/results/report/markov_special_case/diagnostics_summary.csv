@@ -1,4 +1,4 @@
 scenario,avg_entropy,avg_support_size
-markov_high_conflict,1.782962020500043,6.0
-markov_low_conflict,1.7829622167881325,6.0
-markov_medium_conflict,1.7829624143436211,6.0
+markov_high_conflict,1.7829632651278844,6.0
+markov_low_conflict,1.7829663093669703,6.0
+markov_medium_conflict,1.7829654471810352,6.0

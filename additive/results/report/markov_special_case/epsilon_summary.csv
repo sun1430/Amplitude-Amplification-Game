@@ -4,7 +4,7 @@ markov_high_conflict,quantum_encoded,0.0
 markov_high_conflict,residual_mlp,0.0
 markov_low_conflict,ground_truth,0.0
 markov_low_conflict,quantum_encoded,0.0
-markov_low_conflict,residual_mlp,0.07402182648390593
+markov_low_conflict,residual_mlp,0.07402175211816021
 markov_medium_conflict,ground_truth,0.0
 markov_medium_conflict,quantum_encoded,0.0
 markov_medium_conflict,residual_mlp,0.0

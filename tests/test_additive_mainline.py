@@ -8,6 +8,7 @@ import torch
 
 from interference_game.additive.activations import apply_simplex_activation, entmax15
 from interference_game.additive.experiments.common import load_cases
+from interference_game.additive.experiments.markov_common import load_cases as load_markov_cases
 from interference_game.additive.experiments.run_activation_ablation import run_from_config as run_activation_ablation
 from interference_game.additive.experiments.run_markov_special_case import run_from_config as run_markov_special_case
 from interference_game.additive.experiments.run_observable_estimation_benchmark import run_from_config as run_observable_benchmark
@@ -77,6 +78,11 @@ def test_markov_special_case_returns_valid_distributions() -> None:
     result = markov_game.evaluate(actions)
     assert _simplex(result.influence_distribution)
     assert result.observable_expectations is not None
+    sampled_distribution = markov_game.sample_terminal_distribution(actions, num_draws=64, seed=11)
+    sampled_expectations = markov_game.sample_observable_expectations(actions, num_draws=64, seed=11)
+    assert _simplex(sampled_distribution)
+    assert torch.all(sampled_expectations >= -1e-10)
+    assert torch.all(sampled_expectations <= 1.0 + 1e-10)
 
 
 def test_residual_mlp_artifacts_and_activation() -> None:
@@ -85,11 +91,38 @@ def test_residual_mlp_artifacts_and_activation() -> None:
     assert artifacts is not None
     assert artifacts.checkpoint_path.exists()
     assert artifacts.metadata_path.exists()
-    metadata = json.loads(artifacts.metadata_path.read_text(encoding="utf-8"))
+    metadata = json.loads(artifacts.metadata_path.read_text(encoding="utf-8-sig"))
     assert "history" in metadata
     actions = torch.tensor([[0.2, -0.2, 0.1], [0.1, 0.0, -0.1]], dtype=torch.float64)
     distribution = case.sota_model.evaluate(actions).influence_distribution
     assert _simplex(distribution)
+
+
+def test_markov_quantum_encoding_respects_single_step_transition_structure() -> None:
+    case = load_markov_cases(ADDITIVE_ROOT / "configs" / "quick" / "markov_special_case.yaml")[0]
+    actions = torch.tensor([[0.25, -0.05, 0.15], [0.1, 0.2, -0.15]], dtype=torch.float64)
+    projected = case.ground_truth_game.project_actions(actions)
+
+    classical_result = case.ground_truth_game.evaluate(projected)
+    quantum_distribution, signal = case.quantum_game._simulate_state(projected)
+    signal_expectations = case.quantum_game.exact_expectations_from_signal(signal)
+
+    assert torch.allclose(quantum_distribution, classical_result.influence_distribution, atol=1e-8)
+    assert classical_result.observable_expectations is not None
+    assert torch.allclose(signal_expectations, classical_result.observable_expectations, atol=1e-8)
+
+    for node in range(case.model_config.state_dim):
+        row_state = case.ground_truth_game.prepare_row_state(node)
+        column_state = case.ground_truth_game.prepare_column_state(node)
+        assert torch.isclose(row_state.square().sum(), torch.tensor(1.0, dtype=row_state.dtype, device=row_state.device), atol=1e-8)
+        assert torch.isclose(column_state.square().sum(), torch.tensor(1.0, dtype=column_state.dtype, device=column_state.device), atol=1e-8)
+
+        neighbor_count = int(case.ground_truth_game.walk_structure.neighbor_counts[node].item())
+        recovered = torch.zeros(case.model_config.state_dim, dtype=row_state.dtype, device=row_state.device)
+        for slot in range(neighbor_count):
+            neighbor, probability = case.ground_truth_game.neighbor_probability_oracle(node, slot)
+            recovered[neighbor] = probability
+        assert torch.allclose(recovered, case.ground_truth_game.row_transition[node], atol=1e-8)
 
 
 def test_additive_quick_experiments() -> None:
@@ -123,6 +156,9 @@ def test_additive_quick_experiments() -> None:
     markov_summary = pd.read_csv(markov_dir / "summary.csv")
     markov_horizon = pd.read_csv(markov_dir / "horizon_summary.csv")
     markov_observable = pd.read_csv(markov_dir / "observable_aggregate.csv")
+    markov_estimation = pd.read_csv(markov_dir / "estimation_strategy_summary.csv")
     assert set(markov_summary["model_name"]) == {"ground_truth", "quantum_encoded", "residual_mlp"}
     assert {"horizon", "model_name", "accuracy", "mean_regret"}.issubset(markov_horizon.columns)
     assert set(markov_observable["method"]) == {"amplitude_estimation", "monte_carlo"}
+    assert set(markov_estimation["method"]) == {"amplitude_estimation", "monte_carlo"}
+    assert {"horizon", "query_budget", "accuracy", "mean_regret"}.issubset(markov_estimation.columns)

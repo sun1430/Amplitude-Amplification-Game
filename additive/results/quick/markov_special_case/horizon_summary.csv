@@ -1,6 +1,6 @@
 horizon,model_name,accuracy,mean_regret
 1,quantum_encoded,1.0,0.0
-1,residual_mlp,0.875,0.0008955875011701989
+1,residual_mlp,0.75,0.006283466906634869
 3,quantum_encoded,1.0,0.0
 3,residual_mlp,1.0,0.0
 5,quantum_encoded,1.0,0.0

@@ -48,6 +48,7 @@ def run_from_config(config_path: str | Path) -> Path:
     diagnostics_rows: list[dict[str, float | int | str]] = []
     horizon_rows: list[dict[str, float | int | str]] = []
     observable_rows: list[dict[str, float | int | str]] = []
+    estimation_strategy_rows: list[dict[str, float | int | str]] = []
 
     raw_config, scenarios = load_additive_yaml(config_path)
     cases = load_cases(config_path)
@@ -148,6 +149,7 @@ def run_from_config(config_path: str | Path) -> Path:
         )
         for sample_idx, joint_action in enumerate(samples):
             projected = bench_case.ground_truth_game.project_actions(joint_action)
+            query_budgets = sorted(set(int(value) for value in bench_case.experiment_config.estimation_budgets if int(value) > 0))
             for agent_idx in range(bench_case.model_config.num_agents):
                 candidates = build_candidate_actions(
                     num_candidates=bench_case.experiment_config.best_response_candidates,
@@ -158,12 +160,33 @@ def run_from_config(config_path: str | Path) -> Path:
                 exact_scores: list[float] = []
                 quantum_scores: list[float] = []
                 mlp_scores: list[float] = []
-                for candidate in candidates:
+                estimation_scores = {("amplitude_estimation", budget): [] for budget in query_budgets}
+                estimation_scores.update({("monte_carlo", budget): [] for budget in query_budgets})
+                for candidate_idx, candidate in enumerate(candidates):
                     candidate_profile = projected.clone()
                     candidate_profile[agent_idx] = candidate
                     exact_scores.append(float(bench_case.ground_truth_game.evaluate(candidate_profile).utilities[agent_idx].item()))
                     quantum_scores.append(float(bench_case.quantum_game.evaluate(candidate_profile).utilities[agent_idx].item()))
                     mlp_scores.append(float(bench_case.sota_model.evaluate(candidate_profile).utilities[agent_idx].item()))
+                    for query_budget in query_budgets:
+                        num_qubits = max(int(round(math.log2(query_budget))), 1)
+                        ae_result = bench_case.quantum_game.evaluate_with_estimation(candidate_profile, num_qubits=num_qubits)
+                        estimation_scores[("amplitude_estimation", query_budget)].append(float(ae_result.utilities[agent_idx].item()))
+                        mc_expectations = bench_case.ground_truth_game.sample_observable_expectations(
+                            candidate_profile,
+                            num_draws=query_budget,
+                            seed=(
+                                bench_case.experiment_config.seed
+                                + benchmark_seed_offset
+                                + horizon_index * 100000
+                                + sample_idx * 1000
+                                + agent_idx * 100
+                                + candidate_idx * 10
+                                + query_budget
+                            ),
+                        )
+                        mc_utilities = _utility_from_expectations(bench_case.ground_truth_game, mc_expectations, candidate_profile)
+                        estimation_scores[("monte_carlo", query_budget)].append(float(mc_utilities[agent_idx].item()))
                 exact_best_value = max(exact_scores)
                 exact_best_index = int(torch.tensor(exact_scores).argmax().item())
                 quantum_index = int(torch.tensor(quantum_scores).argmax().item())
@@ -184,14 +207,30 @@ def run_from_config(config_path: str | Path) -> Path:
                         },
                     ]
                 )
+                for (method_name, query_budget), scores in estimation_scores.items():
+                    model_index = int(torch.tensor(scores).argmax().item())
+                    estimation_strategy_rows.append(
+                        {
+                            "horizon": int(horizon),
+                            "method": method_name,
+                            "query_budget": int(query_budget),
+                            "accuracy": float(model_index == exact_best_index),
+                            "regret": exact_best_value - exact_scores[model_index],
+                        }
+                    )
 
             gt_result = bench_case.ground_truth_game.evaluate(projected)
             exact_expectations = gt_result.observable_expectations
             assert exact_expectations is not None
-            quantum_distribution = bench_case.quantum_game.evaluate(projected).influence_distribution
-            for query_budget in sorted(set(int(value) for value in bench_case.experiment_config.estimation_budgets if int(value) > 0)):
+            quantum_result = bench_case.quantum_game.evaluate(projected)
+            quantum_signal = quantum_result.latent_state
+            assert quantum_signal is not None
+            for query_budget in query_budgets:
                 num_qubits = max(int(round(math.log2(query_budget))), 1)
-                ae_expectations = bench_case.quantum_game.estimate_observable_expectations(quantum_distribution, num_qubits=num_qubits)
+                ae_expectations = bench_case.quantum_game.estimate_observable_expectations_from_signal(
+                    quantum_signal.real,
+                    num_qubits=num_qubits,
+                )
                 ae_utilities = _utility_from_expectations(bench_case.ground_truth_game, ae_expectations, projected)
                 observable_rows.append(
                     {
@@ -205,12 +244,11 @@ def run_from_config(config_path: str | Path) -> Path:
                     }
                 )
 
-                sampled_distribution = bench_case.quantum_game.sample_from_distribution(
-                    quantum_distribution,
+                mc_expectations = bench_case.ground_truth_game.sample_observable_expectations(
+                    projected,
                     num_draws=query_budget,
                     seed=bench_case.experiment_config.seed + benchmark_seed_offset + horizon_index * 100000 + sample_idx * 100 + query_budget,
                 )
-                mc_expectations = bench_case.ground_truth_game.observables @ sampled_distribution
                 mc_utilities = _utility_from_expectations(bench_case.ground_truth_game, mc_expectations, projected)
                 observable_rows.append(
                     {
@@ -230,6 +268,7 @@ def run_from_config(config_path: str | Path) -> Path:
     diagnostics_raw = pd.DataFrame(diagnostics_rows)
     horizon_raw = pd.DataFrame(horizon_rows)
     observable_raw = pd.DataFrame(observable_rows)
+    estimation_strategy_raw = pd.DataFrame(estimation_strategy_rows)
 
     group_keys = ["scenario", "model_name"]
     strategy_summary = strategy_raw.groupby(group_keys, dropna=False)["accuracy"].mean().reset_index()
@@ -265,6 +304,14 @@ def run_from_config(config_path: str | Path) -> Path:
         .sort_values(["method", "query_budget"])
         .reset_index(drop=True)
     )
+    estimation_strategy_summary = (
+        estimation_strategy_raw.groupby(["horizon", "method", "query_budget"], dropna=False)[["accuracy", "regret"]]
+        .mean()
+        .reset_index()
+        .rename(columns={"regret": "mean_regret"})
+        .sort_values(["horizon", "method", "query_budget"])
+        .reset_index(drop=True)
+    )
     summary = strategy_summary.merge(regret_summary, on=group_keys).merge(epsilon_summary, on=group_keys).merge(diagnostics_summary, on="scenario")
 
     write_frame(results_dir / "strategy_raw.csv", strategy_raw)
@@ -273,6 +320,7 @@ def run_from_config(config_path: str | Path) -> Path:
     write_frame(results_dir / "diagnostics_raw.csv", diagnostics_raw)
     write_frame(results_dir / "horizon_raw.csv", horizon_raw)
     write_frame(results_dir / "observable_raw.csv", observable_raw)
+    write_frame(results_dir / "estimation_strategy_raw.csv", estimation_strategy_raw)
     write_frame(results_dir / "strategy_summary.csv", strategy_summary)
     write_frame(results_dir / "regret_summary.csv", regret_summary)
     write_frame(results_dir / "epsilon_summary.csv", epsilon_summary)
@@ -280,6 +328,7 @@ def run_from_config(config_path: str | Path) -> Path:
     write_frame(results_dir / "horizon_summary.csv", horizon_summary)
     write_frame(results_dir / "observable_summary.csv", observable_summary)
     write_frame(results_dir / "observable_aggregate.csv", observable_aggregate)
+    write_frame(results_dir / "estimation_strategy_summary.csv", estimation_strategy_summary)
     write_frame(results_dir / "summary.csv", summary.sort_values(["scenario", "model_name"]).reset_index(drop=True))
     return results_dir
 
