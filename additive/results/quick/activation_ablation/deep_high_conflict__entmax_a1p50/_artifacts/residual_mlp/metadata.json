@@ -1,0 +1,91 @@
+﻿{
+  "best_val_loss": 0.004856092513674977,
+  "experiment_config": {
+    "amplitude_estimation_qubits": 8,
+    "batch_size": 16,
+    "best_response_candidates": 6,
+    "early_stopping_patience": 5,
+    "epochs": 24,
+    "estimation_budgets": [
+      8,
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "hidden_dim": 48,
+    "learning_rate": 0.005,
+    "max_regret_candidates": 6,
+    "mc_repetitions": 1,
+    "name": "activation_ablation_quick",
+    "num_profiles": 8,
+    "output_root": "additive/results/quick/activation_ablation",
+    "seed": 151,
+    "train_samples": 64,
+    "val_samples": 16,
+    "weight_decay": 0.0001
+  },
+  "history": [
+    {
+      "epoch": 0,
+      "train_loss": 0.21225694535217607,
+      "val_loss": 0.0634662670853651
+    },
+    {
+      "epoch": 1,
+      "train_loss": 0.0839070264517927,
+      "val_loss": 0.04210253050068608
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.04379595230262105,
+      "val_loss": 0.04115608666520454
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.018080496354593127,
+      "val_loss": 0.030670168215614288
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.009977192606198743,
+      "val_loss": 0.011724790876846402
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.006078720296928922,
+      "val_loss": 0.004856092513674977
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.003770701758724553,
+      "val_loss": 0.009472304094421118
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.004614725628868826,
+      "val_loss": 0.00940288406451888
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.004498808143604859,
+      "val_loss": 0.009145004019102993
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.003769484409102741,
+      "val_loss": 0.008184265908555036
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.00354189427619593,
+      "val_loss": 0.007783275720853926
+    }
+  ],
+  "seed": 153,
+  "train_samples": 64,
+  "train_seed": 153,
+  "val_samples": 16,
+  "val_seed": 154
+}

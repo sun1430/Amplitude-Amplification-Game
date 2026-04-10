@@ -6,15 +6,19 @@ from pathlib import Path
 import pandas as pd
 import torch
 
-from interference_game.additive.activations import entmax15
+from interference_game.additive.activations import apply_simplex_activation, entmax15
 from interference_game.additive.experiments.common import load_cases
+from interference_game.additive.experiments.run_activation_ablation import run_from_config as run_activation_ablation
+from interference_game.additive.experiments.run_markov_special_case import run_from_config as run_markov_special_case
 from interference_game.additive.experiments.run_observable_estimation_benchmark import run_from_config as run_observable_benchmark
 from interference_game.additive.experiments.run_epsilon_analysis import run_from_config as run_epsilon
 from interference_game.additive.experiments.run_regret_analysis import run_from_config as run_regret
 from interference_game.additive.experiments.run_strategy_comparison import run_from_config as run_strategy
+from interference_game.additive.markov_special_case import ReversibleSparseMarkovGame
 
 
 ROOT = Path(__file__).resolve().parents[1]
+ADDITIVE_ROOT = ROOT / "additive"
 
 
 def _simplex(tensor: torch.Tensor) -> bool:
@@ -28,8 +32,22 @@ def test_entmax15_produces_sparse_simplex_outputs() -> None:
     assert torch.count_nonzero(output == 0.0) >= 1
 
 
+def test_simplex_activation_family_outputs() -> None:
+    logits = torch.tensor([2.0, 0.5, -1.0], dtype=torch.float64)
+    for family, kwargs in [
+        ("softmax", {"beta": 1.0}),
+        ("sparsemax", {}),
+        ("entmax", {"alpha": 1.2}),
+        ("entmax", {"alpha": 1.8}),
+        ("bounded_confidence", {"gamma": 10.0, "tau": 0.05}),
+    ]:
+        output = apply_simplex_activation(logits, family=family, dim=0, **kwargs)
+        assert _simplex(output)
+        assert torch.all(output >= -1e-10)
+
+
 def test_additive_models_return_valid_distributions_and_scores() -> None:
-    cases = load_cases(ROOT / "configs" / "additive" / "quick" / "strategy.yaml")
+    cases = load_cases(ADDITIVE_ROOT / "configs" / "quick" / "strategy.yaml")
     case = cases[0]
     actions = torch.tensor([[0.3, -0.1, 0.2], [0.1, 0.2, -0.2]], dtype=torch.float64)
 
@@ -52,8 +70,17 @@ def test_additive_models_return_valid_distributions_and_scores() -> None:
     assert torch.all(case.ground_truth_game.evaluate(larger_action).costs >= gt_result.costs)
 
 
+def test_markov_special_case_returns_valid_distributions() -> None:
+    case = load_cases(ADDITIVE_ROOT / "configs" / "quick" / "strategy.yaml")[0]
+    markov_game = ReversibleSparseMarkovGame(case.model_config, case.target_bundle.targets)
+    actions = torch.tensor([[0.25, -0.05, 0.15], [0.1, 0.2, -0.15]], dtype=torch.float64)
+    result = markov_game.evaluate(actions)
+    assert _simplex(result.influence_distribution)
+    assert result.observable_expectations is not None
+
+
 def test_residual_mlp_artifacts_and_activation() -> None:
-    case = load_cases(ROOT / "configs" / "additive" / "quick" / "strategy.yaml")[0]
+    case = load_cases(ADDITIVE_ROOT / "configs" / "quick" / "strategy.yaml")[0]
     artifacts = case.sota_model.training_artifacts
     assert artifacts is not None
     assert artifacts.checkpoint_path.exists()
@@ -61,17 +88,16 @@ def test_residual_mlp_artifacts_and_activation() -> None:
     metadata = json.loads(artifacts.metadata_path.read_text(encoding="utf-8"))
     assert "history" in metadata
     actions = torch.tensor([[0.2, -0.2, 0.1], [0.1, 0.0, -0.1]], dtype=torch.float64)
-    projected = case.sota_model.project_actions(actions)
-    logits = case.sota_model.network(projected.reshape(1, -1)).squeeze(0)
-    distribution = entmax15(logits, dim=0)
+    distribution = case.sota_model.evaluate(actions).influence_distribution
     assert _simplex(distribution)
 
 
 def test_additive_quick_experiments() -> None:
-    strategy_dir = run_strategy(ROOT / "configs" / "additive" / "quick" / "strategy.yaml")
-    regret_dir = run_regret(ROOT / "configs" / "additive" / "quick" / "regret.yaml")
-    epsilon_dir = run_epsilon(ROOT / "configs" / "additive" / "quick" / "epsilon.yaml")
-    benchmark_dir = run_observable_benchmark(ROOT / "configs" / "additive" / "quick" / "observable_estimation.yaml")
+    strategy_dir = run_strategy(ADDITIVE_ROOT / "configs" / "quick" / "strategy.yaml")
+    regret_dir = run_regret(ADDITIVE_ROOT / "configs" / "quick" / "regret.yaml")
+    epsilon_dir = run_epsilon(ADDITIVE_ROOT / "configs" / "quick" / "epsilon.yaml")
+    benchmark_dir = run_observable_benchmark(ADDITIVE_ROOT / "configs" / "quick" / "observable_estimation.yaml")
+    activation_dir = run_activation_ablation(ADDITIVE_ROOT / "configs" / "quick" / "activation_ablation.yaml")
 
     for result_dir, column in [
         (strategy_dir, "accuracy"),
@@ -88,3 +114,15 @@ def test_additive_quick_experiments() -> None:
     assert set(benchmark_summary["method"]) == {"amplitude_estimation", "monte_carlo"}
     assert set(benchmark_aggregate["method"]) == {"amplitude_estimation", "monte_carlo"}
     assert {"query_budget", "observable_error", "utility_error"}.issubset(benchmark_aggregate.columns)
+
+    activation_summary = pd.read_csv(activation_dir / "summary.csv")
+    assert {"scenario", "activation_label", "model_name", "accuracy", "mean_regret", "mean_epsilon"}.issubset(activation_summary.columns)
+    assert set(activation_summary["activation_label"]) == {"entmax_1p5", "sparsemax"}
+
+    markov_dir = run_markov_special_case(ADDITIVE_ROOT / "configs" / "quick" / "markov_special_case.yaml")
+    markov_summary = pd.read_csv(markov_dir / "summary.csv")
+    markov_horizon = pd.read_csv(markov_dir / "horizon_summary.csv")
+    markov_observable = pd.read_csv(markov_dir / "observable_aggregate.csv")
+    assert set(markov_summary["model_name"]) == {"ground_truth", "quantum_encoded", "residual_mlp"}
+    assert {"horizon", "model_name", "accuracy", "mean_regret"}.issubset(markov_horizon.columns)
+    assert set(markov_observable["method"]) == {"amplitude_estimation", "monte_carlo"}

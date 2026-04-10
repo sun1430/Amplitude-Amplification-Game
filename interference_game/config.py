@@ -33,6 +33,15 @@ class ModelConfig:
     use_competitive_extension: bool = False
     device: str = "cpu"
     dtype: str = "complex128"
+    activation_family: str = "entmax"
+    activation_alpha: float = 1.5
+    activation_beta: float = 1.0
+    activation_tau: float = 0.0
+    activation_gamma: float = 8.0
+    activation_iterations: int = 50
+    markov_graph_degree: int = 2
+    markov_self_loop: float = 0.2
+    markov_inertia: float = 0.3
 
     def budgets(self) -> list[float]:
         return _ensure_list(self.action_budget, self.num_agents, "action_budget")
@@ -42,6 +51,29 @@ class ModelConfig:
 
     def gamma_list(self) -> list[float]:
         return _ensure_list(self.gammas, self.num_agents, "gammas")
+
+    def activation_name(self) -> str:
+        family = self.activation_family.lower()
+        if family == "softmax":
+            return f"softmax(beta={self.activation_beta:.2f})"
+        if family == "sparsemax":
+            return "sparsemax"
+        if family in {"bounded_confidence", "smooth_bounded_confidence"}:
+            return f"bounded_confidence(gamma={self.activation_gamma:.2f}, tau={self.activation_tau:.2f})"
+        return f"entmax(alpha={self.activation_alpha:.2f})"
+
+    def activation_slug(self) -> str:
+        family = self.activation_family.lower()
+        if family == "softmax":
+            suffix = f"b{self.activation_beta:.2f}"
+        elif family == "sparsemax":
+            suffix = None
+        elif family in {"bounded_confidence", "smooth_bounded_confidence"}:
+            suffix = f"g{self.activation_gamma:.2f}_t{self.activation_tau:.2f}"
+        else:
+            suffix = f"a{self.activation_alpha:.2f}"
+        raw = family if suffix is None else f"{family}_{suffix}"
+        return raw.replace("-", "_").replace(".", "p").replace("(", "_").replace(")", "").replace("=", "_")
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "ModelConfig":

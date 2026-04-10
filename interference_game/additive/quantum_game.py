@@ -4,7 +4,6 @@ import numpy as np
 import torch
 
 from interference_game.additive.config import AdditiveExperimentConfig
-from interference_game.additive.activations import entmax15
 from interference_game.additive.classical_game import ClassicalGroundTruthGame
 from interference_game.additive.scoring import DistributionEvaluationResult, DistributionScoringMixin
 
@@ -49,7 +48,7 @@ class QuantumEncodedGame(DistributionScoringMixin):
                 if self.config.mixing_depth > 0:
                     psi = self._normalize_state(self.mixer @ psi)
             logits = self.transition_matrix @ distribution + total_signal
-            distribution = entmax15(logits, dim=0)
+            distribution = self.reference_game.apply_activation(logits)
             phases = torch.angle(psi)
             psi = torch.sqrt(torch.clamp(distribution, min=0.0)).to(dtype=self.complex_dtype) * torch.exp(1j * phases)
             psi = self._normalize_state(psi)

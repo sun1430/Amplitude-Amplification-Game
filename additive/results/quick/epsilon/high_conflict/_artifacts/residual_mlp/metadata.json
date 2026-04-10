@@ -1,0 +1,56 @@
+﻿{
+  "best_val_loss": 0.0011902379923458702,
+  "experiment_config": {
+    "batch_size": 16,
+    "best_response_candidates": 4,
+    "early_stopping_patience": 4,
+    "epochs": 18,
+    "hidden_dim": 32,
+    "learning_rate": 0.01,
+    "max_regret_candidates": 4,
+    "name": "epsilon_analysis",
+    "num_profiles": 4,
+    "output_root": "additive/results/quick/epsilon",
+    "seed": 41,
+    "train_samples": 48,
+    "val_samples": 16,
+    "weight_decay": 0.0001
+  },
+  "history": [
+    {
+      "epoch": 0,
+      "train_loss": 0.2061235862556622,
+      "val_loss": 0.012369764936737585
+    },
+    {
+      "epoch": 1,
+      "train_loss": 0.05511217659460461,
+      "val_loss": 0.0011902379923458702
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.016682090294923742,
+      "val_loss": 0.012272861811921634
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.03889120393205767,
+      "val_loss": 0.00463742419986035
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.014595974441001025,
+      "val_loss": 0.0042998609915079035
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.01205795349311028,
+      "val_loss": 0.0035631047940077243
+    }
+  ],
+  "seed": 42,
+  "train_samples": 48,
+  "train_seed": 42,
+  "val_samples": 16,
+  "val_seed": 43
+}

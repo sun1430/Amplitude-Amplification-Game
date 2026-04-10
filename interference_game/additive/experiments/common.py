@@ -31,6 +31,9 @@ class AdditiveExperimentCase:
         budgets = self.model_config.budgets()
         return {
             "scenario": self.scenario_name,
+            "activation_name": self.model_config.activation_name(),
+            "activation_family": self.model_config.activation_family,
+            "activation_slug": self.model_config.activation_slug(),
             "num_agents": self.model_config.num_agents,
             "state_dim": self.model_config.state_dim,
             "mixing_depth": self.model_config.mixing_depth,
@@ -48,6 +51,9 @@ class AdditiveExperimentCase:
             "residual_mlp": self.sota_model,
         }
 
+    def artifact_scenario_name(self) -> str:
+        return f"{self.scenario_name}__{self.model_config.activation_slug()}"
+
 
 def output_dir(base_root: str | Path, scenario_name: str | None = None) -> Path:
     root = ensure_dir(base_root)
@@ -56,30 +62,30 @@ def output_dir(base_root: str | Path, scenario_name: str | None = None) -> Path:
     return ensure_dir(root / scenario_name)
 
 
+def build_case(raw_config: dict[str, Any], scenario_override: dict[str, Any], scenario_index: int) -> AdditiveExperimentCase:
+    experiment_config, model_config, target_config, equilibrium_config = build_additive_configs(raw_config, scenario_override)
+    scenario_name = scenario_override.get("name", experiment_config.name)
+    target_bundle = generate_distribution_targets(target_config, model_config.num_agents, model_config.state_dim)
+    ground_truth = ClassicalGroundTruthGame(model_config, target_bundle.targets)
+    quantum = QuantumEncodedGame(ground_truth, experiment_config)
+    surrogate = ResidualMLPSurrogate(ground_truth, experiment_config)
+    artifact_name = f"{scenario_name}__{model_config.activation_slug()}"
+    artifact_dir = output_dir(experiment_config.output_root, artifact_name) / "_artifacts" / "residual_mlp"
+    surrogate.fit(artifact_dir, seed=experiment_config.seed + scenario_index)
+    return AdditiveExperimentCase(
+        scenario_name=scenario_name,
+        scenario_index=scenario_index,
+        experiment_config=experiment_config,
+        model_config=model_config,
+        target_config=target_config,
+        equilibrium_config=equilibrium_config,
+        target_bundle=target_bundle,
+        ground_truth_game=ground_truth,
+        quantum_game=quantum,
+        sota_model=surrogate,
+    )
+
+
 def load_cases(config_path: str | Path) -> list[AdditiveExperimentCase]:
     raw, scenarios = load_additive_yaml(config_path)
-    cases: list[AdditiveExperimentCase] = []
-    for idx, scenario in enumerate(scenarios):
-        experiment_config, model_config, target_config, equilibrium_config = build_additive_configs(raw, scenario)
-        scenario_name = scenario.get("name", experiment_config.name)
-        target_bundle = generate_distribution_targets(target_config, model_config.num_agents, model_config.state_dim)
-        ground_truth = ClassicalGroundTruthGame(model_config, target_bundle.targets)
-        quantum = QuantumEncodedGame(ground_truth, experiment_config)
-        surrogate = ResidualMLPSurrogate(ground_truth, experiment_config)
-        artifact_dir = output_dir(experiment_config.output_root, scenario_name) / "_artifacts" / "residual_mlp"
-        surrogate.fit(artifact_dir, seed=experiment_config.seed + idx)
-        cases.append(
-            AdditiveExperimentCase(
-                scenario_name=scenario_name,
-                scenario_index=idx,
-                experiment_config=experiment_config,
-                model_config=model_config,
-                target_config=target_config,
-                equilibrium_config=equilibrium_config,
-                target_bundle=target_bundle,
-                ground_truth_game=ground_truth,
-                quantum_game=quantum,
-                sota_model=surrogate,
-            )
-        )
-    return cases
+    return [build_case(raw, scenario, idx) for idx, scenario in enumerate(scenarios)]

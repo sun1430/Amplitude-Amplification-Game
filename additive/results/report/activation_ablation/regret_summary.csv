@@ -1,0 +1,55 @@
+scenario,activation_label,activation_name,activation_family,activation_slug,model_name,mean_regret
+deep_high_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,ground_truth,0.0
+deep_high_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,quantum_encoded,0.0
+deep_high_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,residual_mlp,0.039540353965271516
+deep_high_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,ground_truth,0.0
+deep_high_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,quantum_encoded,0.0
+deep_high_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,residual_mlp,0.001429318387801789
+deep_high_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,ground_truth,0.0
+deep_high_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,quantum_encoded,0.0
+deep_high_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,residual_mlp,0.022461253043698722
+deep_high_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,ground_truth,0.0
+deep_high_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,quantum_encoded,0.0
+deep_high_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,residual_mlp,0.011462077096531726
+deep_high_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,ground_truth,0.0
+deep_high_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,quantum_encoded,2.4560901960485614e-05
+deep_high_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,residual_mlp,0.002404558264104609
+deep_high_conflict,sparsemax,sparsemax,sparsemax,sparsemax,ground_truth,0.0
+deep_high_conflict,sparsemax,sparsemax,sparsemax,sparsemax,quantum_encoded,0.0
+deep_high_conflict,sparsemax,sparsemax,sparsemax,sparsemax,residual_mlp,0.009227138383116496
+medium_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,ground_truth,0.0
+medium_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,quantum_encoded,6.346245866086647e-05
+medium_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,residual_mlp,0.009983025151665577
+medium_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,ground_truth,0.0
+medium_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,quantum_encoded,0.0
+medium_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,residual_mlp,0.0006664396892481188
+medium_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,ground_truth,0.0
+medium_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,quantum_encoded,0.0
+medium_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,residual_mlp,0.013928428785549831
+medium_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,ground_truth,0.0
+medium_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,quantum_encoded,0.0
+medium_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,residual_mlp,0.004171762842329999
+medium_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,ground_truth,0.0
+medium_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,quantum_encoded,0.0
+medium_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,residual_mlp,0.0020734739860462635
+medium_conflict,sparsemax,sparsemax,sparsemax,sparsemax,ground_truth,0.0
+medium_conflict,sparsemax,sparsemax,sparsemax,sparsemax,quantum_encoded,0.0
+medium_conflict,sparsemax,sparsemax,sparsemax,sparsemax,residual_mlp,0.01005363652098099
+shallow_low_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,ground_truth,0.0
+shallow_low_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,quantum_encoded,7.628177908311842e-05
+shallow_low_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,residual_mlp,0.012966311196875316
+shallow_low_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,ground_truth,0.0
+shallow_low_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,quantum_encoded,0.00014124039400809202
+shallow_low_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,residual_mlp,0.002515984420084131
+shallow_low_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,ground_truth,0.0
+shallow_low_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,quantum_encoded,0.0
+shallow_low_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,residual_mlp,0.003677261482297504
+shallow_low_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,ground_truth,0.0
+shallow_low_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,quantum_encoded,7.389029339818776e-06
+shallow_low_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,residual_mlp,0.003046885601146863
+shallow_low_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,ground_truth,0.0
+shallow_low_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,quantum_encoded,0.00015500905985309463
+shallow_low_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,residual_mlp,0.0007543158875445329
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,sparsemax,ground_truth,0.0
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,sparsemax,quantum_encoded,0.0
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,sparsemax,residual_mlp,0.0015664966437948485

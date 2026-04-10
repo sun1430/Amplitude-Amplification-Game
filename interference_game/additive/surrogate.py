@@ -6,7 +6,7 @@ from pathlib import Path
 import torch
 from torch import nn
 
-from interference_game.additive.activations import entmax15
+from interference_game.additive.activations import apply_simplex_activation
 from interference_game.additive.classical_game import ClassicalGroundTruthGame
 from interference_game.additive.config import AdditiveExperimentConfig
 from interference_game.additive.scoring import DistributionEvaluationResult, DistributionScoringMixin
@@ -64,9 +64,21 @@ class ResidualMLPSurrogate(DistributionScoringMixin):
         ).to(device=self.device, dtype=self.real_dtype)
         self.training_artifacts: SurrogateTrainingArtifacts | None = None
 
+    def _apply_activation(self, logits: torch.Tensor, dim: int) -> torch.Tensor:
+        return apply_simplex_activation(
+            logits,
+            family=self.config.activation_family,
+            dim=dim,
+            alpha=self.config.activation_alpha,
+            beta=self.config.activation_beta,
+            tau=self.config.activation_tau,
+            gamma=self.config.activation_gamma,
+            n_iter=self.config.activation_iterations,
+        )
+
     def _forward_distribution(self, projected: torch.Tensor) -> torch.Tensor:
         logits = self.network(projected.reshape(1, -1)).squeeze(0)
-        return entmax15(logits, dim=0)
+        return self._apply_activation(logits, dim=0)
 
     def _build_dataset(self, num_samples: int, seed: int) -> tuple[torch.Tensor, torch.Tensor]:
         actions = random_feasible_actions(
@@ -123,7 +135,7 @@ class ResidualMLPSurrogate(DistributionScoringMixin):
                 batch_targets = train_targets[batch_indices]
                 optimizer.zero_grad(set_to_none=True)
                 logits = self.network(batch_actions)
-                predictions = entmax15(logits, dim=-1)
+                predictions = self._apply_activation(logits, dim=-1)
                 loss = torch.mean((predictions - batch_targets).square())
                 loss.backward()
                 optimizer.step()
@@ -132,7 +144,7 @@ class ResidualMLPSurrogate(DistributionScoringMixin):
             self.network.eval()
             with torch.no_grad():
                 val_logits = self.network(val_actions.reshape(val_actions.shape[0], -1))
-                val_predictions = entmax15(val_logits, dim=-1)
+                val_predictions = self._apply_activation(val_logits, dim=-1)
                 val_loss = torch.mean((val_predictions - val_targets).square()).item()
 
             history.append(

@@ -1,0 +1,71 @@
+experiment:
+  name: activation_ablation_report
+  output_root: additive/results/report/activation_ablation
+  seed: 157
+  num_profiles: 24
+  best_response_candidates: 10
+  train_samples: 192
+  val_samples: 48
+  batch_size: 32
+  epochs: 40
+  learning_rate: 0.005
+  weight_decay: 0.0001
+  early_stopping_patience: 6
+  hidden_dim: 64
+  max_regret_candidates: 10
+model:
+  num_agents: 2
+  state_dim: 4
+  mixing_depth: 2
+  action_budget: 4.0
+  lambdas: 0.06
+  mixer_seed: 61
+  device: cuda
+target:
+  seed: 41
+  conflict_level: medium
+equilibrium:
+  discrete_phases: [0.0, 1.5707963267948966]
+  epsilon: 0.1
+  max_profiles: 512
+activation_ablations:
+  - name: softmax_beta_1p0
+    model:
+      activation_family: softmax
+      activation_beta: 1.0
+  - name: entmax_alpha_1p2
+    model:
+      activation_family: entmax
+      activation_alpha: 1.2
+  - name: entmax_alpha_1p5
+    model:
+      activation_family: entmax
+      activation_alpha: 1.5
+  - name: entmax_alpha_1p8
+    model:
+      activation_family: entmax
+      activation_alpha: 1.8
+  - name: sparsemax
+    model:
+      activation_family: sparsemax
+  - name: bounded_confidence
+    model:
+      activation_family: bounded_confidence
+      activation_gamma: 10.0
+      activation_tau: 0.05
+scenarios:
+  - name: shallow_low_conflict
+    model:
+      mixing_depth: 1
+    target:
+      conflict_level: low
+  - name: medium_conflict
+    model:
+      mixing_depth: 2
+    target:
+      conflict_level: medium
+  - name: deep_high_conflict
+    model:
+      mixing_depth: 3
+    target:
+      conflict_level: high

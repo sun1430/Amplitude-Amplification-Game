@@ -1,0 +1,81 @@
+﻿{
+  "best_val_loss": 0.026991213192373468,
+  "experiment_config": {
+    "amplitude_estimation_qubits": 8,
+    "batch_size": 16,
+    "best_response_candidates": 5,
+    "early_stopping_patience": 4,
+    "epochs": 18,
+    "estimation_budgets": [
+      8,
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "hidden_dim": 32,
+    "learning_rate": 0.01,
+    "max_regret_candidates": 5,
+    "mc_repetitions": 1,
+    "name": "strategy_comparison",
+    "num_profiles": 5,
+    "output_root": "additive/results/quick/strategy",
+    "seed": 31,
+    "train_samples": 48,
+    "val_samples": 16,
+    "weight_decay": 0.0001
+  },
+  "history": [
+    {
+      "epoch": 0,
+      "train_loss": 0.15912570323198272,
+      "val_loss": 0.08841176956795396
+    },
+    {
+      "epoch": 1,
+      "train_loss": 0.07732538510200325,
+      "val_loss": 0.12165480874565726
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.04233589554525754,
+      "val_loss": 0.028435864407399623
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.020873695621324292,
+      "val_loss": 0.03779605475639346
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.014924143905450807,
+      "val_loss": 0.026991213192373468
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.009882960283864513,
+      "val_loss": 0.05329126187302345
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.009613317441500051,
+      "val_loss": 0.04012999509497535
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.005714066755128822,
+      "val_loss": 0.03156257921307791
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.006862666251222939,
+      "val_loss": 0.03002830243679747
+    }
+  ],
+  "seed": 31,
+  "train_samples": 48,
+  "train_seed": 31,
+  "val_samples": 16,
+  "val_seed": 32
+}

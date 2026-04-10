@@ -3,7 +3,7 @@ from __future__ import annotations
 import numpy as np
 import torch
 
-from interference_game.additive.activations import entmax15
+from interference_game.additive.activations import apply_simplex_activation
 from interference_game.additive.scoring import DistributionEvaluationResult, DistributionScoringMixin
 from interference_game.config import ModelConfig
 
@@ -36,13 +36,25 @@ class ClassicalGroundTruthGame(DistributionScoringMixin):
     def _joint_influence(self, projected: torch.Tensor) -> torch.Tensor:
         return torch.einsum("asd,ad->s", self.agent_influences, projected)
 
+    def apply_activation(self, logits: torch.Tensor) -> torch.Tensor:
+        return apply_simplex_activation(
+            logits,
+            family=self.config.activation_family,
+            dim=0,
+            alpha=self.config.activation_alpha,
+            beta=self.config.activation_beta,
+            tau=self.config.activation_tau,
+            gamma=self.config.activation_gamma,
+            n_iter=self.config.activation_iterations,
+        )
+
     def _simulate_distribution(self, projected: torch.Tensor) -> torch.Tensor:
         state = self.initial_distribution.clone()
         steps = max(self.config.mixing_depth, 1)
         influence = self._joint_influence(projected)
         for _ in range(steps):
             logits = self.transition_matrix @ state + influence
-            state = entmax15(logits, dim=0)
+            state = self.apply_activation(logits)
         return state
 
     def evaluate(self, actions: torch.Tensor | np.ndarray | list[list[float]]) -> DistributionEvaluationResult:

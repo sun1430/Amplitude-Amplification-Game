@@ -1,7 +1,0 @@
-scenario,model_name,accuracy
-high_conflict,ground_truth,1.0
-high_conflict,quantum_encoded,1.0
-high_conflict,residual_mlp,0.7
-medium_conflict,ground_truth,1.0
-medium_conflict,quantum_encoded,1.0
-medium_conflict,residual_mlp,0.5

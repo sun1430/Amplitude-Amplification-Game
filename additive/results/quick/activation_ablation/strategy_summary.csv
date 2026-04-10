@@ -1,0 +1,13 @@
+scenario,activation_label,activation_name,activation_family,activation_slug,model_name,accuracy
+deep_high_conflict,entmax_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,ground_truth,1.0
+deep_high_conflict,entmax_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,quantum_encoded,1.0
+deep_high_conflict,entmax_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,residual_mlp,0.875
+deep_high_conflict,sparsemax,sparsemax,sparsemax,sparsemax,ground_truth,1.0
+deep_high_conflict,sparsemax,sparsemax,sparsemax,sparsemax,quantum_encoded,1.0
+deep_high_conflict,sparsemax,sparsemax,sparsemax,sparsemax,residual_mlp,0.9375
+shallow_low_conflict,entmax_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,ground_truth,1.0
+shallow_low_conflict,entmax_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,quantum_encoded,1.0
+shallow_low_conflict,entmax_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,residual_mlp,0.9375
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,sparsemax,ground_truth,1.0
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,sparsemax,quantum_encoded,1.0
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,sparsemax,residual_mlp,0.75

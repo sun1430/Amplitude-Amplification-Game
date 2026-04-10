@@ -1,0 +1,55 @@
+scenario,activation_label,activation_name,activation_family,activation_slug,model_name,accuracy,mean_regret,mean_epsilon,avg_entropy,avg_support_size
+deep_high_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,ground_truth,1.0,0.0,0.048331328997805,0.8117088082122031,3.6666666666666665
+deep_high_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,quantum_encoded,1.0,0.0,0.05727667901658535,0.8117088082122031,3.6666666666666665
+deep_high_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,residual_mlp,0.8125,0.039540353965271516,0.21937163687605735,0.8117088082122031,3.6666666666666665
+deep_high_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,ground_truth,1.0,0.0,0.04877021543185561,0.908747378380336,4.0
+deep_high_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,quantum_encoded,1.0,0.0,0.04877021543185561,0.908747378380336,4.0
+deep_high_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,residual_mlp,0.8958333333333334,0.001429318387801789,0.06158966806367543,0.908747378380336,4.0
+deep_high_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,ground_truth,1.0,0.0,0.06043929557483002,0.2726231991679135,1.6666666666666667
+deep_high_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,quantum_encoded,1.0,0.0,0.047919484261451456,0.2726231991679135,1.6666666666666667
+deep_high_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,residual_mlp,0.7916666666666666,0.022461253043698722,0.11797253337896335,0.2726231991679135,1.6666666666666667
+deep_high_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,ground_truth,1.0,0.0,0.06737804089108142,0.2983584739372338,1.875
+deep_high_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,quantum_encoded,1.0,0.0,0.06737804089108142,0.2983584739372338,1.875
+deep_high_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,residual_mlp,0.875,0.011462077096531726,0.0679702614948749,0.2983584739372338,1.875
+deep_high_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,ground_truth,1.0,0.0,0.05459857184095981,1.1430222638828436,4.0
+deep_high_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,quantum_encoded,0.9375,2.4560901960485614e-05,0.06693489228619909,1.1430222638828436,4.0
+deep_high_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,residual_mlp,0.7708333333333334,0.002404558264104609,0.09255275749124829,1.1430222638828436,4.0
+deep_high_conflict,sparsemax,sparsemax,sparsemax,sparsemax,ground_truth,1.0,0.0,0.03421620084048886,0.46436687108475927,1.9583333333333333
+deep_high_conflict,sparsemax,sparsemax,sparsemax,sparsemax,quantum_encoded,1.0,0.0,0.03421620084048886,0.46436687108475927,1.9583333333333333
+deep_high_conflict,sparsemax,sparsemax,sparsemax,sparsemax,residual_mlp,0.8958333333333334,0.009227138383116496,0.13648260740453827,0.46436687108475927,1.9583333333333333
+medium_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,ground_truth,1.0,0.0,0.0,0.7764617881964804,3.7083333333333335
+medium_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,quantum_encoded,0.9791666666666666,6.346245866086647e-05,0.0,0.7764617881964804,3.7083333333333335
+medium_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,residual_mlp,0.7708333333333334,0.009983025151665577,0.06277146511115889,0.7764617881964804,3.7083333333333335
+medium_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,ground_truth,1.0,0.0,0.01560451088558748,0.9447737876121725,4.0
+medium_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,quantum_encoded,1.0,0.0,0.01560451088558748,0.9447737876121725,4.0
+medium_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,residual_mlp,0.9791666666666666,0.0006664396892481188,0.01560451088558748,0.9447737876121725,4.0
+medium_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,ground_truth,1.0,0.0,0.03927127022317443,0.38555478464167053,1.9583333333333333
+medium_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,quantum_encoded,1.0,0.0,0.03927127022317443,0.38555478464167053,1.9583333333333333
+medium_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,residual_mlp,0.75,0.013928428785549831,0.012928938342931823,0.38555478464167053,1.9583333333333333
+medium_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,ground_truth,1.0,0.0,0.02480043030694637,0.48727481178627857,2.3333333333333335
+medium_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,quantum_encoded,1.0,0.0,0.02480043030694637,0.48727481178627857,2.3333333333333335
+medium_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,residual_mlp,0.8125,0.004171762842329999,0.02480043030694637,0.48727481178627857,2.3333333333333335
+medium_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,ground_truth,1.0,0.0,0.05145768012796042,1.1322672602571302,4.0
+medium_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,quantum_encoded,1.0,0.0,0.05145768012796042,1.1322672602571302,4.0
+medium_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,residual_mlp,0.9166666666666666,0.0020734739860462635,0.029041424118022616,1.1322672602571302,4.0
+medium_conflict,sparsemax,sparsemax,sparsemax,sparsemax,ground_truth,1.0,0.0,0.04131803445637813,0.5389704516915098,2.125
+medium_conflict,sparsemax,sparsemax,sparsemax,sparsemax,quantum_encoded,1.0,0.0,0.04131803445637813,0.5389704516915098,2.125
+medium_conflict,sparsemax,sparsemax,sparsemax,sparsemax,residual_mlp,0.7708333333333334,0.01005363652098099,0.013315339801822992,0.5389704516915098,2.125
+shallow_low_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,ground_truth,1.0,0.0,0.0477258432312326,0.7675460116328076,3.9166666666666665
+shallow_low_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,quantum_encoded,0.9791666666666666,7.628177908311842e-05,0.0477258432312326,0.7675460116328076,3.9166666666666665
+shallow_low_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,residual_mlp,0.8333333333333334,0.012966311196875316,0.05055732222068676,0.7675460116328076,3.9166666666666665
+shallow_low_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,ground_truth,1.0,0.0,0.05604674850872512,1.0480637886699593,4.0
+shallow_low_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,quantum_encoded,0.9375,0.00014124039400809202,0.05604674850872512,1.0480637886699593,4.0
+shallow_low_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,residual_mlp,0.9166666666666666,0.002515984420084131,0.048904525918149463,1.0480637886699593,4.0
+shallow_low_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,ground_truth,1.0,0.0,0.030651977994553214,0.3706606029364456,2.0
+shallow_low_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,quantum_encoded,1.0,0.0,0.030651977994553214,0.3706606029364456,2.0
+shallow_low_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,residual_mlp,0.9375,0.003677261482297504,0.0,0.3706606029364456,2.0
+shallow_low_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,ground_truth,1.0,0.0,0.05645437165642886,0.6039669920782545,2.375
+shallow_low_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,quantum_encoded,0.9791666666666666,7.389029339818776e-06,0.05645437165642886,0.6039669920782545,2.375
+shallow_low_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,residual_mlp,0.875,0.003046885601146863,0.047883850504291114,0.6039669920782545,2.375
+shallow_low_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,ground_truth,1.0,0.0,0.04827659330285139,1.1069293099474147,4.0
+shallow_low_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,quantum_encoded,0.9166666666666666,0.00015500905985309463,0.04827659330285139,1.1069293099474147,4.0
+shallow_low_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,residual_mlp,0.9166666666666666,0.0007543158875445329,0.04827659330285139,1.1069293099474147,4.0
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,sparsemax,ground_truth,1.0,0.0,0.030651977994553214,0.5138512129020706,2.1666666666666665
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,sparsemax,quantum_encoded,1.0,0.0,0.030651977994553214,0.5138512129020706,2.1666666666666665
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,sparsemax,residual_mlp,0.9583333333333334,0.0015664966437948485,0.030651977994553214,0.5138512129020706,2.1666666666666665

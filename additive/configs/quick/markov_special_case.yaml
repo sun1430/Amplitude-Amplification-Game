@@ -1,0 +1,44 @@
+experiment:
+  name: markov_special_case_quick
+  output_root: additive/results/quick/markov_special_case
+  seed: 181
+  num_profiles: 8
+  best_response_candidates: 6
+  train_samples: 64
+  val_samples: 16
+  batch_size: 16
+  epochs: 24
+  learning_rate: 0.005
+  weight_decay: 0.0001
+  early_stopping_patience: 5
+  hidden_dim: 48
+  max_regret_candidates: 6
+  estimation_budgets: [8, 32]
+  horizon_values: [1, 3, 5]
+model:
+  num_agents: 2
+  state_dim: 3
+  mixing_depth: 3
+  action_budget: 3.0
+  lambdas: 0.06
+  mixer_seed: 73
+  device: cuda
+  activation_family: softmax
+  activation_beta: 1.0
+  markov_graph_degree: 1
+  markov_self_loop: 0.3
+  markov_inertia: 0.25
+target:
+  seed: 43
+  conflict_level: medium
+equilibrium:
+  discrete_phases: [0.0, 1.5707963267948966]
+  epsilon: 0.1
+  max_profiles: 64
+scenarios:
+  - name: markov_low_conflict
+    target:
+      conflict_level: low
+  - name: markov_high_conflict
+    target:
+      conflict_level: high

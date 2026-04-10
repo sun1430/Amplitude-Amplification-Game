@@ -1,0 +1,10 @@
+scenario,model_name,accuracy
+markov_high_conflict,ground_truth,1.0
+markov_high_conflict,quantum_encoded,1.0
+markov_high_conflict,residual_mlp,0.7916666666666666
+markov_low_conflict,ground_truth,1.0
+markov_low_conflict,quantum_encoded,1.0
+markov_low_conflict,residual_mlp,0.8958333333333334
+markov_medium_conflict,ground_truth,1.0
+markov_medium_conflict,quantum_encoded,1.0
+markov_medium_conflict,residual_mlp,0.7083333333333334

@@ -1,0 +1,7 @@
+scenario,num_agents,state_dim,mixing_depth,activation_name,markov_graph_degree,markov_inertia,mean_action_budget,conflict_level,rho,mean_target_overlap,model_name,profile_key,gt_epsilon
+markov_low_conflict,2,3,3,softmax(beta=1.00),1,0.25,3.0,low,0.85,0.4739792389324737,ground_truth,0|0,0.0
+markov_low_conflict,2,3,3,softmax(beta=1.00),1,0.25,3.0,low,0.85,0.4739792389324737,quantum_encoded,0|0,0.0
+markov_low_conflict,2,3,3,softmax(beta=1.00),1,0.25,3.0,low,0.85,0.4739792389324737,residual_mlp,0|0,0.0
+markov_high_conflict,2,3,3,softmax(beta=1.00),1,0.25,3.0,high,0.15,0.3547092663065807,ground_truth,0|0,0.0
+markov_high_conflict,2,3,3,softmax(beta=1.00),1,0.25,3.0,high,0.15,0.3547092663065807,quantum_encoded,0|0,0.0
+markov_high_conflict,2,3,3,softmax(beta=1.00),1,0.25,3.0,high,0.15,0.3547092663065807,residual_mlp,0|0,0.0

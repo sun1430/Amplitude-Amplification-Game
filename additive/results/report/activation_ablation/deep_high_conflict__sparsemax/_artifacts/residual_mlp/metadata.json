@@ -1,0 +1,176 @@
+﻿{
+  "best_val_loss": 0.0016235848658440486,
+  "experiment_config": {
+    "amplitude_estimation_qubits": 8,
+    "batch_size": 32,
+    "best_response_candidates": 10,
+    "early_stopping_patience": 6,
+    "epochs": 40,
+    "estimation_budgets": [
+      8,
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "hidden_dim": 64,
+    "learning_rate": 0.005,
+    "max_regret_candidates": 10,
+    "mc_repetitions": 1,
+    "name": "activation_ablation_report",
+    "num_profiles": 24,
+    "output_root": "additive/results/report/activation_ablation",
+    "seed": 157,
+    "train_samples": 192,
+    "val_samples": 48,
+    "weight_decay": 0.0001
+  },
+  "history": [
+    {
+      "epoch": 0,
+      "train_loss": 0.07290808977216034,
+      "val_loss": 0.022086073241336063
+    },
+    {
+      "epoch": 1,
+      "train_loss": 0.023351852342744926,
+      "val_loss": 0.01565083807239734
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.02463427735389641,
+      "val_loss": 0.016671140421261513
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.013797446943190213,
+      "val_loss": 0.018569875110626098
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.009481954946459398,
+      "val_loss": 0.007280021131777224
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.007241247460379005,
+      "val_loss": 0.007762649121333802
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.0045013837936070285,
+      "val_loss": 0.006130243362469609
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.004022629570430415,
+      "val_loss": 0.0038713498362986315
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.002641360022663486,
+      "val_loss": 0.0025984093786585944
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.0017124922647092959,
+      "val_loss": 0.0020715719267940915
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.001269842404681728,
+      "val_loss": 0.0021548277889625353
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.0009725963976567467,
+      "val_loss": 0.0021277666849603863
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.000716990178077063,
+      "val_loss": 0.001830311241269908
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.0006528902227102861,
+      "val_loss": 0.0022564477658413174
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.0005877201162129379,
+      "val_loss": 0.001995044283330641
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.0006057869989184259,
+      "val_loss": 0.0022824035536284353
+    },
+    {
+      "epoch": 16,
+      "train_loss": 0.0006286545865772579,
+      "val_loss": 0.0018483974756763424
+    },
+    {
+      "epoch": 17,
+      "train_loss": 0.0005579657617321931,
+      "val_loss": 0.0019500054128445924
+    },
+    {
+      "epoch": 18,
+      "train_loss": 0.0005192788466571071,
+      "val_loss": 0.0017580408576808523
+    },
+    {
+      "epoch": 19,
+      "train_loss": 0.00048410884825990185,
+      "val_loss": 0.0017664403459437131
+    },
+    {
+      "epoch": 20,
+      "train_loss": 0.0005004151515532151,
+      "val_loss": 0.0019330051606318136
+    },
+    {
+      "epoch": 21,
+      "train_loss": 0.0006723467735581432,
+      "val_loss": 0.0016235848658440486
+    },
+    {
+      "epoch": 22,
+      "train_loss": 0.0009437613669237617,
+      "val_loss": 0.002380293551819006
+    },
+    {
+      "epoch": 23,
+      "train_loss": 0.0009233045662480284,
+      "val_loss": 0.0017732156649345448
+    },
+    {
+      "epoch": 24,
+      "train_loss": 0.0008017136790077761,
+      "val_loss": 0.0025462114635540767
+    },
+    {
+      "epoch": 25,
+      "train_loss": 0.0008709933209915836,
+      "val_loss": 0.00249118286134667
+    },
+    {
+      "epoch": 26,
+      "train_loss": 0.0009581646477297012,
+      "val_loss": 0.0023480617771970596
+    },
+    {
+      "epoch": 27,
+      "train_loss": 0.0009108314652289621,
+      "val_loss": 0.003712160091199827
+    }
+  ],
+  "seed": 173,
+  "train_samples": 192,
+  "train_seed": 173,
+  "val_samples": 48,
+  "val_seed": 174
+}

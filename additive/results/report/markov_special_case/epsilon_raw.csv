@@ -1,0 +1,11 @@
+scenario,num_agents,state_dim,mixing_depth,activation_name,markov_graph_degree,markov_inertia,mean_action_budget,conflict_level,rho,mean_target_overlap,model_name,profile_key,gt_epsilon
+markov_low_conflict,2,6,10,entmax(alpha=1.50),2,0.25,3.5,low,0.85,0.2111781470360492,ground_truth,0|0,0.0
+markov_low_conflict,2,6,10,entmax(alpha=1.50),2,0.25,3.5,low,0.85,0.2111781470360492,quantum_encoded,0|0,0.0
+markov_low_conflict,2,6,10,entmax(alpha=1.50),2,0.25,3.5,low,0.85,0.2111781470360492,residual_mlp,0|0,0.0
+markov_low_conflict,2,6,10,entmax(alpha=1.50),2,0.25,3.5,low,0.85,0.2111781470360492,residual_mlp,2|0,0.14804365296781186
+markov_medium_conflict,2,6,10,entmax(alpha=1.50),2,0.25,3.5,medium,0.5,0.17801187167531526,ground_truth,0|0,0.0
+markov_medium_conflict,2,6,10,entmax(alpha=1.50),2,0.25,3.5,medium,0.5,0.17801187167531526,quantum_encoded,0|0,0.0
+markov_medium_conflict,2,6,10,entmax(alpha=1.50),2,0.25,3.5,medium,0.5,0.17801187167531526,residual_mlp,0|0,0.0
+markov_high_conflict,2,6,10,entmax(alpha=1.50),2,0.25,3.5,high,0.15,0.18191676451718067,ground_truth,0|0,0.0
+markov_high_conflict,2,6,10,entmax(alpha=1.50),2,0.25,3.5,high,0.15,0.18191676451718067,quantum_encoded,0|0,0.0
+markov_high_conflict,2,6,10,entmax(alpha=1.50),2,0.25,3.5,high,0.15,0.18191676451718067,residual_mlp,0|0,0.0

@@ -41,6 +41,17 @@ pytest -q
 
 Generated artifacts are written below [results](results).
 
+## Additive Workspace
+
+The additive project materials are now grouped under [additive](additive):
+
+- [additive/configs](additive/configs): additive experiment configs
+- [additive/results](additive/results): additive outputs, summaries, plots, and reports
+- [additive/references](additive/references): additive papers and planning notes
+- [additive/slides](additive/slides): additive-only slide deck assets and rendered outputs
+
+The additive package code still remains in [interference_game/additive](interference_game/additive) so existing imports and scripts continue to work.
+
 ## Project Layout
 
 - [interference_game/models](interference_game/models): exact model, baselines, and target generation

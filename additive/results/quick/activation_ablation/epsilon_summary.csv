@@ -1,0 +1,13 @@
+scenario,activation_label,activation_name,activation_family,activation_slug,model_name,mean_epsilon
+deep_high_conflict,entmax_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,ground_truth,0.004434404400621324
+deep_high_conflict,entmax_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,quantum_encoded,0.004434404400621324
+deep_high_conflict,entmax_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,residual_mlp,0.07051007573079826
+deep_high_conflict,sparsemax,sparsemax,sparsemax,sparsemax,ground_truth,0.018863853191297478
+deep_high_conflict,sparsemax,sparsemax,sparsemax,sparsemax,quantum_encoded,0.018863853191297478
+deep_high_conflict,sparsemax,sparsemax,sparsemax,sparsemax,residual_mlp,0.04856188990092048
+shallow_low_conflict,entmax_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,ground_truth,0.0
+shallow_low_conflict,entmax_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,quantum_encoded,0.0
+shallow_low_conflict,entmax_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,residual_mlp,0.0
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,sparsemax,ground_truth,0.0
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,sparsemax,quantum_encoded,0.0
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,sparsemax,residual_mlp,0.0

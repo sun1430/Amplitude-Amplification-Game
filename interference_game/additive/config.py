@@ -26,6 +26,7 @@ class AdditiveExperimentConfig:
     amplitude_estimation_qubits: int = 8
     estimation_budgets: list[int] = field(default_factory=lambda: [8, 16, 32, 64, 128, 256])
     mc_repetitions: int = 1
+    horizon_values: list[int] = field(default_factory=lambda: [1, 2, 4, 8, 12])
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "AdditiveExperimentConfig":

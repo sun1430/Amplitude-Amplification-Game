@@ -1,0 +1,19 @@
+scenario,activation_label,activation_name,activation_family,activation_slug,avg_entropy,avg_support_size
+deep_high_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,0.8117088082122031,3.6666666666666665
+deep_high_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,0.908747378380336,4.0
+deep_high_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,0.2726231991679135,1.6666666666666667
+deep_high_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,0.2983584739372338,1.875
+deep_high_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,1.1430222638828436,4.0
+deep_high_conflict,sparsemax,sparsemax,sparsemax,sparsemax,0.46436687108475927,1.9583333333333333
+medium_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,0.7764617881964804,3.7083333333333335
+medium_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,0.9447737876121725,4.0
+medium_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,0.38555478464167053,1.9583333333333333
+medium_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,0.48727481178627857,2.3333333333333335
+medium_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,1.1322672602571302,4.0
+medium_conflict,sparsemax,sparsemax,sparsemax,sparsemax,0.5389704516915098,2.125
+shallow_low_conflict,bounded_confidence,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,0.7675460116328076,3.9166666666666665
+shallow_low_conflict,entmax_alpha_1p2,entmax(alpha=1.20),entmax,entmax_a1p20,1.0480637886699593,4.0
+shallow_low_conflict,entmax_alpha_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,0.3706606029364456,2.0
+shallow_low_conflict,entmax_alpha_1p8,entmax(alpha=1.80),entmax,entmax_a1p80,0.6039669920782545,2.375
+shallow_low_conflict,softmax_beta_1p0,softmax(beta=1.00),softmax,softmax_b1p00,1.1069293099474147,4.0
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,sparsemax,0.5138512129020706,2.1666666666666665

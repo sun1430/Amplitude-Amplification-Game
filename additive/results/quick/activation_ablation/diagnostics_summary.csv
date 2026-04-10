@@ -1,0 +1,5 @@
+scenario,activation_label,activation_name,activation_family,activation_slug,avg_entropy,avg_support_size
+deep_high_conflict,entmax_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,0.2622523051516045,1.5
+deep_high_conflict,sparsemax,sparsemax,sparsemax,sparsemax,0.14443543116566074,1.375
+shallow_low_conflict,entmax_1p5,entmax(alpha=1.50),entmax,entmax_a1p50,0.3093921564124808,1.625
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,sparsemax,0.47481020046752553,1.875

@@ -1,0 +1,214 @@
+scenario,activation_name,activation_family,activation_slug,num_agents,state_dim,mixing_depth,mean_action_budget,conflict_level,rho,competitive_extension,mean_target_overlap,activation_label,model_name,profile_key,gt_epsilon
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,ground_truth,2|8,0.0
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,ground_truth,0|8,0.023930029059646807
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,ground_truth,2|0,0.05134881327052887
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,ground_truth,10|0,0.06717475707213155
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,ground_truth,0|0,0.06914466599532398
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,ground_truth,10|8,0.07806129441947712
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,quantum_encoded,2|8,0.0
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,quantum_encoded,0|8,0.023930029059646807
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,quantum_encoded,2|0,0.05134881327052887
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,quantum_encoded,10|0,0.06717475707213155
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,quantum_encoded,0|0,0.06914466599532398
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,quantum_encoded,10|8,0.07806129441947712
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,residual_mlp,2|8,0.0
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,residual_mlp,0|8,0.023930029059646807
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,residual_mlp,2|0,0.05134881327052887
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,residual_mlp,10|0,0.06717475707213155
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,residual_mlp,10|8,0.07806129441947712
+shallow_low_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,1,4.0,low,0.85,False,0.3128885201584534,softmax_beta_1p0,residual_mlp,0|0,0.06914466599532398
+shallow_low_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p2,ground_truth,2|8,0.0
+shallow_low_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p2,ground_truth,0|8,0.04638067605870255
+shallow_low_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p2,ground_truth,10|0,0.06652342270406303
+shallow_low_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p2,ground_truth,2|0,0.08271400490983227
+shallow_low_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p2,ground_truth,10|8,0.08461563887102774
+shallow_low_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p2,quantum_encoded,2|8,0.0
+shallow_low_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p2,quantum_encoded,0|8,0.04638067605870255
+shallow_low_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p2,quantum_encoded,10|0,0.06652342270406303
+shallow_low_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p2,quantum_encoded,2|0,0.08271400490983227
+shallow_low_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p2,quantum_encoded,10|8,0.08461563887102774
+shallow_low_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p2,residual_mlp,0|8,0.04638067605870255
+shallow_low_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p2,residual_mlp,2|8,0.0
+shallow_low_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p2,residual_mlp,2|0,0.08271400490983227
+shallow_low_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p2,residual_mlp,10|0,0.06652342270406303
+shallow_low_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p5,ground_truth,0|8,0.0
+shallow_low_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p5,ground_truth,2|0,0.0
+shallow_low_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p5,ground_truth,11|9,0.09195593398365964
+shallow_low_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p5,quantum_encoded,0|8,0.0
+shallow_low_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p5,quantum_encoded,2|0,0.0
+shallow_low_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p5,quantum_encoded,11|9,0.09195593398365964
+shallow_low_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p5,residual_mlp,0|8,0.0
+shallow_low_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p5,residual_mlp,2|0,0.0
+shallow_low_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p8,ground_truth,0|8,0.0
+shallow_low_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p8,ground_truth,2|0,0.026544254170936532
+shallow_low_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p8,ground_truth,2|8,0.05475294363301553
+shallow_low_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p8,ground_truth,11|9,0.07758419512082737
+shallow_low_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p8,ground_truth,10|0,0.08740695272540056
+shallow_low_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p8,ground_truth,2|10,0.09243788428839317
+shallow_low_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p8,quantum_encoded,0|8,0.0
+shallow_low_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p8,quantum_encoded,2|0,0.026544254170936532
+shallow_low_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p8,quantum_encoded,2|8,0.05475294363301553
+shallow_low_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p8,quantum_encoded,11|9,0.07758419512082737
+shallow_low_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p8,quantum_encoded,10|0,0.08740695272540056
+shallow_low_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p8,quantum_encoded,2|10,0.09243788428839317
+shallow_low_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p8,residual_mlp,0|8,0.0
+shallow_low_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p8,residual_mlp,2|0,0.026544254170936532
+shallow_low_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p8,residual_mlp,10|0,0.08740695272540056
+shallow_low_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,1,4.0,low,0.85,False,0.3128885201584534,entmax_alpha_1p8,residual_mlp,11|9,0.07758419512082737
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,2,4,1,4.0,low,0.85,False,0.3128885201584534,sparsemax,ground_truth,0|8,0.0
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,2,4,1,4.0,low,0.85,False,0.3128885201584534,sparsemax,ground_truth,2|0,0.0
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,2,4,1,4.0,low,0.85,False,0.3128885201584534,sparsemax,ground_truth,11|9,0.09195593398365964
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,2,4,1,4.0,low,0.85,False,0.3128885201584534,sparsemax,quantum_encoded,0|8,0.0
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,2,4,1,4.0,low,0.85,False,0.3128885201584534,sparsemax,quantum_encoded,2|0,0.0
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,2,4,1,4.0,low,0.85,False,0.3128885201584534,sparsemax,quantum_encoded,11|9,0.09195593398365964
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,2,4,1,4.0,low,0.85,False,0.3128885201584534,sparsemax,residual_mlp,0|8,0.0
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,2,4,1,4.0,low,0.85,False,0.3128885201584534,sparsemax,residual_mlp,2|0,0.0
+shallow_low_conflict,sparsemax,sparsemax,sparsemax,2,4,1,4.0,low,0.85,False,0.3128885201584534,sparsemax,residual_mlp,11|9,0.09195593398365964
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,ground_truth,0|0,0.0
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,ground_truth,15|8,0.0
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,ground_truth,7|8,0.0355212655499072
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,ground_truth,11|0,0.05532374276564084
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,ground_truth,12|10,0.0638545935130218
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,ground_truth,14|0,0.07127617336327269
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,ground_truth,4|8,0.07543517735923067
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,ground_truth,6|0,0.0803957932987876
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,quantum_encoded,0|0,0.0
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,quantum_encoded,15|8,0.0
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,quantum_encoded,7|8,0.0355212655499072
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,quantum_encoded,11|0,0.05532374276564084
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,quantum_encoded,12|10,0.0638545935130218
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,quantum_encoded,14|0,0.07127617336327269
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,quantum_encoded,4|8,0.07543517735923067
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,quantum_encoded,6|0,0.0803957932987876
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,residual_mlp,15|8,0.0
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,residual_mlp,6|0,0.0803957932987876
+shallow_low_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,1,4.0,low,0.85,False,0.3128885201584534,bounded_confidence,residual_mlp,14|0,0.07127617336327269
+medium_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,2,4.0,medium,0.5,False,0.25959803911315,softmax_beta_1p0,ground_truth,0|8,0.0
+medium_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,2,4.0,medium,0.5,False,0.25959803911315,softmax_beta_1p0,ground_truth,4|8,0.05808284823604523
+medium_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,2,4.0,medium,0.5,False,0.25959803911315,softmax_beta_1p0,ground_truth,0|0,0.09629019214783602
+medium_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,2,4.0,medium,0.5,False,0.25959803911315,softmax_beta_1p0,quantum_encoded,0|8,0.0
+medium_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,2,4.0,medium,0.5,False,0.25959803911315,softmax_beta_1p0,quantum_encoded,4|8,0.05808284823604523
+medium_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,2,4.0,medium,0.5,False,0.25959803911315,softmax_beta_1p0,quantum_encoded,0|0,0.09629019214783602
+medium_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,2,4.0,medium,0.5,False,0.25959803911315,softmax_beta_1p0,residual_mlp,0|8,0.0
+medium_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,2,4.0,medium,0.5,False,0.25959803911315,softmax_beta_1p0,residual_mlp,4|8,0.05808284823604523
+medium_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p2,ground_truth,0|8,0.0
+medium_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p2,ground_truth,4|8,0.03120902177117496
+medium_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p2,quantum_encoded,0|8,0.0
+medium_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p2,quantum_encoded,4|8,0.03120902177117496
+medium_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p2,residual_mlp,0|8,0.0
+medium_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p2,residual_mlp,4|8,0.03120902177117496
+medium_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p5,ground_truth,0|8,0.0
+medium_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p5,ground_truth,4|8,0.025857876685863646
+medium_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p5,ground_truth,0|10,0.09195593398365964
+medium_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p5,quantum_encoded,0|8,0.0
+medium_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p5,quantum_encoded,4|8,0.025857876685863646
+medium_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p5,quantum_encoded,0|10,0.09195593398365964
+medium_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p5,residual_mlp,0|8,0.0
+medium_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p5,residual_mlp,4|8,0.025857876685863646
+medium_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p8,ground_truth,4|8,0.0
+medium_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p8,ground_truth,0|8,0.04960086061389274
+medium_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p8,quantum_encoded,4|8,0.0
+medium_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p8,quantum_encoded,0|8,0.04960086061389274
+medium_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p8,residual_mlp,4|8,0.0
+medium_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,2,4.0,medium,0.5,False,0.25959803911315,entmax_alpha_1p8,residual_mlp,0|8,0.04960086061389274
+medium_conflict,sparsemax,sparsemax,sparsemax,2,4,2,4.0,medium,0.5,False,0.25959803911315,sparsemax,ground_truth,4|8,0.0
+medium_conflict,sparsemax,sparsemax,sparsemax,2,4,2,4.0,medium,0.5,False,0.25959803911315,sparsemax,ground_truth,0|8,0.026630679603645985
+medium_conflict,sparsemax,sparsemax,sparsemax,2,4,2,4.0,medium,0.5,False,0.25959803911315,sparsemax,ground_truth,0|10,0.09732342376548841
+medium_conflict,sparsemax,sparsemax,sparsemax,2,4,2,4.0,medium,0.5,False,0.25959803911315,sparsemax,quantum_encoded,4|8,0.0
+medium_conflict,sparsemax,sparsemax,sparsemax,2,4,2,4.0,medium,0.5,False,0.25959803911315,sparsemax,quantum_encoded,0|8,0.026630679603645985
+medium_conflict,sparsemax,sparsemax,sparsemax,2,4,2,4.0,medium,0.5,False,0.25959803911315,sparsemax,quantum_encoded,0|10,0.09732342376548841
+medium_conflict,sparsemax,sparsemax,sparsemax,2,4,2,4.0,medium,0.5,False,0.25959803911315,sparsemax,residual_mlp,0|8,0.026630679603645985
+medium_conflict,sparsemax,sparsemax,sparsemax,2,4,2,4.0,medium,0.5,False,0.25959803911315,sparsemax,residual_mlp,4|8,0.0
+medium_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,2,4.0,medium,0.5,False,0.25959803911315,bounded_confidence,ground_truth,0|0,0.0
+medium_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,2,4.0,medium,0.5,False,0.25959803911315,bounded_confidence,quantum_encoded,0|0,0.0
+medium_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,2,4.0,medium,0.5,False,0.25959803911315,bounded_confidence,residual_mlp,0|8,0.12554293022231777
+medium_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,2,4.0,medium,0.5,False,0.25959803911315,bounded_confidence,residual_mlp,0|0,0.0
+deep_high_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,3,4.0,high,0.15,False,0.2722932538205738,softmax_beta_1p0,ground_truth,0|0,0.0
+deep_high_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,3,4.0,high,0.15,False,0.2722932538205738,softmax_beta_1p0,ground_truth,0|1,0.0651280241334361
+deep_high_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,3,4.0,high,0.15,False,0.2722932538205738,softmax_beta_1p0,ground_truth,0|2,0.09866769138944331
+deep_high_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,3,4.0,high,0.15,False,0.2722932538205738,softmax_beta_1p0,quantum_encoded,0|0,0.0
+deep_high_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,3,4.0,high,0.15,False,0.2722932538205738,softmax_beta_1p0,quantum_encoded,0|1,0.0651280241334361
+deep_high_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,3,4.0,high,0.15,False,0.2722932538205738,softmax_beta_1p0,quantum_encoded,0|2,0.09866769138944331
+deep_high_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,3,4.0,high,0.15,False,0.2722932538205738,softmax_beta_1p0,quantum_encoded,0|3,0.10394385362191697
+deep_high_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,3,4.0,high,0.15,False,0.2722932538205738,softmax_beta_1p0,residual_mlp,0|0,0.0
+deep_high_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,3,4.0,high,0.15,False,0.2722932538205738,softmax_beta_1p0,residual_mlp,0|1,0.0651280241334361
+deep_high_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,3,4.0,high,0.15,False,0.2722932538205738,softmax_beta_1p0,residual_mlp,0|3,0.10394385362191697
+deep_high_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,3,4.0,high,0.15,False,0.2722932538205738,softmax_beta_1p0,residual_mlp,0|2,0.09866769138944331
+deep_high_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,3,4.0,high,0.15,False,0.2722932538205738,softmax_beta_1p0,residual_mlp,0|7,0.12896169297626667
+deep_high_conflict,softmax(beta=1.00),softmax,softmax_b1p00,2,4,3,4.0,high,0.15,False,0.2722932538205738,softmax_beta_1p0,residual_mlp,0|5,0.1586152828264267
+deep_high_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p2,ground_truth,0|0,0.0
+deep_high_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p2,ground_truth,0|1,0.02874307688742536
+deep_high_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p2,ground_truth,0|3,0.04723033112527392
+deep_high_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p2,ground_truth,0|2,0.08157990165754389
+deep_high_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p2,ground_truth,0|7,0.0862977674890349
+deep_high_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p2,quantum_encoded,0|0,0.0
+deep_high_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p2,quantum_encoded,0|1,0.02874307688742536
+deep_high_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p2,quantum_encoded,0|3,0.04723033112527392
+deep_high_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p2,quantum_encoded,0|2,0.08157990165754389
+deep_high_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p2,quantum_encoded,0|7,0.0862977674890349
+deep_high_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p2,residual_mlp,0|1,0.02874307688742536
+deep_high_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p2,residual_mlp,0|0,0.0
+deep_high_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p2,residual_mlp,0|3,0.04723033112527392
+deep_high_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p2,residual_mlp,0|7,0.0862977674890349
+deep_high_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p2,residual_mlp,0|2,0.08157990165754389
+deep_high_conflict,entmax(alpha=1.20),entmax,entmax_a1p20,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p2,residual_mlp,0|5,0.12568693122277452
+deep_high_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p5,ground_truth,14|3,0.009965426129094623
+deep_high_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p5,ground_truth,8|3,0.03661565769790959
+deep_high_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p5,ground_truth,14|1,0.09717736895735016
+deep_high_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p5,ground_truth,14|7,0.09799872951496572
+deep_high_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p5,quantum_encoded,14|3,0.009965426129094623
+deep_high_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p5,quantum_encoded,8|3,0.03661565769790959
+deep_high_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p5,quantum_encoded,14|1,0.09717736895735016
+deep_high_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p5,residual_mlp,0|3,0.11136921662017263
+deep_high_conflict,entmax(alpha=1.50),entmax,entmax_a1p50,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p5,residual_mlp,0|7,0.12457585013775407
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,ground_truth,0|3,0.0
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,ground_truth,8|3,0.045366562420393886
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,ground_truth,14|7,0.07543054526776086
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,ground_truth,14|3,0.08247050992604976
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,ground_truth,0|1,0.08528571367200305
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,ground_truth,0|7,0.09105730580546534
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,ground_truth,8|1,0.09203564914589701
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,quantum_encoded,0|3,0.0
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,quantum_encoded,8|3,0.045366562420393886
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,quantum_encoded,14|7,0.07543054526776086
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,quantum_encoded,14|3,0.08247050992604976
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,quantum_encoded,0|7,0.09105730580546534
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,quantum_encoded,8|1,0.09203564914589701
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,quantum_encoded,0|1,0.08528571367200305
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,residual_mlp,0|3,0.0
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,residual_mlp,8|3,0.045366562420393886
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,residual_mlp,0|7,0.09105730580546534
+deep_high_conflict,entmax(alpha=1.80),entmax,entmax_a1p80,2,4,3,4.0,high,0.15,False,0.2722932538205738,entmax_alpha_1p8,residual_mlp,12|0,0.13545717775364033
+deep_high_conflict,sparsemax,sparsemax,sparsemax,2,4,3,4.0,high,0.15,False,0.2722932538205738,sparsemax,ground_truth,0|3,0.0
+deep_high_conflict,sparsemax,sparsemax,sparsemax,2,4,3,4.0,high,0.15,False,0.2722932538205738,sparsemax,ground_truth,8|3,0.010506622187618497
+deep_high_conflict,sparsemax,sparsemax,sparsemax,2,4,3,4.0,high,0.15,False,0.2722932538205738,sparsemax,ground_truth,14|3,0.01425067737312502
+deep_high_conflict,sparsemax,sparsemax,sparsemax,2,4,3,4.0,high,0.15,False,0.2722932538205738,sparsemax,ground_truth,0|7,0.06487357581761932
+deep_high_conflict,sparsemax,sparsemax,sparsemax,2,4,3,4.0,high,0.15,False,0.2722932538205738,sparsemax,ground_truth,0|1,0.08145012882408148
+deep_high_conflict,sparsemax,sparsemax,sparsemax,2,4,3,4.0,high,0.15,False,0.2722932538205738,sparsemax,quantum_encoded,0|3,0.0
+deep_high_conflict,sparsemax,sparsemax,sparsemax,2,4,3,4.0,high,0.15,False,0.2722932538205738,sparsemax,quantum_encoded,8|3,0.010506622187618497
+deep_high_conflict,sparsemax,sparsemax,sparsemax,2,4,3,4.0,high,0.15,False,0.2722932538205738,sparsemax,quantum_encoded,14|3,0.01425067737312502
+deep_high_conflict,sparsemax,sparsemax,sparsemax,2,4,3,4.0,high,0.15,False,0.2722932538205738,sparsemax,quantum_encoded,0|7,0.06487357581761932
+deep_high_conflict,sparsemax,sparsemax,sparsemax,2,4,3,4.0,high,0.15,False,0.2722932538205738,sparsemax,quantum_encoded,0|1,0.08145012882408148
+deep_high_conflict,sparsemax,sparsemax,sparsemax,2,4,3,4.0,high,0.15,False,0.2722932538205738,sparsemax,residual_mlp,0|3,0.0
+deep_high_conflict,sparsemax,sparsemax,sparsemax,2,4,3,4.0,high,0.15,False,0.2722932538205738,sparsemax,residual_mlp,6|3,0.10766766618123425
+deep_high_conflict,sparsemax,sparsemax,sparsemax,2,4,3,4.0,high,0.15,False,0.2722932538205738,sparsemax,residual_mlp,12|0,0.1548957902889783
+deep_high_conflict,sparsemax,sparsemax,sparsemax,2,4,3,4.0,high,0.15,False,0.2722932538205738,sparsemax,residual_mlp,0|2,0.23120611458901594
+deep_high_conflict,sparsemax,sparsemax,sparsemax,2,4,3,4.0,high,0.15,False,0.2722932538205738,sparsemax,residual_mlp,6|7,0.18864346596346293
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,ground_truth,0|7,0.005248942207341234
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,ground_truth,0|1,0.03260526958843765
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,ground_truth,0|5,0.04358932036363239
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,ground_truth,0|2,0.06348511385609087
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,ground_truth,0|3,0.09672799897352286
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,quantum_encoded,0|7,0.005248942207341234
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,quantum_encoded,0|1,0.03260526958843765
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,quantum_encoded,0|5,0.04358932036363239
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,quantum_encoded,0|2,0.06348511385609087
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,quantum_encoded,8|0,0.1020034291104871
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,quantum_encoded,0|3,0.09672799897352286
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,residual_mlp,12|0,0.39930953904273214
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,residual_mlp,0|0,0.14699092648383488
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,residual_mlp,6|2,0.3684830434753846
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,residual_mlp,6|7,0.17097007924126728
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,residual_mlp,0|7,0.005248942207341234
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,residual_mlp,6|0,0.3811138138257504
+deep_high_conflict,"bounded_confidence(gamma=10.00, tau=0.05)",bounded_confidence,bounded_confidence_g10p00_t0p05,2,4,3,4.0,high,0.15,False,0.2722932538205738,bounded_confidence,residual_mlp,0|2,0.06348511385609087
